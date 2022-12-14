@@ -11,8 +11,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def index
-    @users = User.all
-    @book = Book.new
+    @customers = Customer.all
   end
 
   def edit

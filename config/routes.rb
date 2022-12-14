@@ -12,11 +12,12 @@ Rails.application.routes.draw do
 
   #public
   scope module: :public do
-    resources :customers, only:[:show,:edit,:update] do
+    resources :customers, only:[:show,:edit,:index,:update] do
      collection do
        get 'unsubscribe'
        patch 'withdraw'
      end
    end
+   resources :items, only:[:index,:new,:create,:show,:edit,:update]
   end
 end

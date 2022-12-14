@@ -1,0 +1,16 @@
+<div id="star_<%= item.id %>"></div>
+<script>
+    $(document).on('turbolinks:load', function() {
+    $('#star_<%= item.id %>').empty();
+    let star_<%= item.id %> = document.querySelector('#star_<%= item.id %>');
+    star_<%= item.id %>.innerHTML = ""
+    let opt_<%= item.id %> = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= item.star %>",
+        readOnly: true,
+      };
+    raty(star_<%= item.id %> ,opt_<%= item.id %>);
+    });
+</script>

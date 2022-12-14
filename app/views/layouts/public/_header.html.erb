@@ -14,14 +14,14 @@
             <% end %>
           </li>
           <li>
-            <%#=  link_to users_path,class: 'nav-link text-light', 'data-turbolinks': false do %>
+            <%=  link_to customers_path,class: 'nav-link text-light', 'data-turbolinks': false do %>
               <i class="fas fa-users"></i> Users
-            <%# end %>
+            <% end %>
           </li>
           <li>
-            <%#=  link_to books_path ,class: 'nav-link text-light', 'data-turbolinks': false do %>
+            <%=  link_to items_path ,class: 'nav-link text-light', 'data-turbolinks': false do %>
               <i class="fas fa-book-open"></i> Books
-            <%# end %>
+            <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>

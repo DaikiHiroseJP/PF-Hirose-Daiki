@@ -16,13 +16,13 @@
             <td><%= link_to @item.title, @item %></td>
             <td><%= @item.body %></td>
             <td>
-            <%# if @item.category === nil %>
+            <% if @item.category === nil %>
               no tag
-            <%# else %>
-              <%#= link_to @item.category, search_book_path(keyword: @item.category), 'data-turbolinks': false %>
-            <%# end %>
+            <% else %>
+              <%= link_to @item.category, search_item_path(keyword: @item.category), 'data-turbolinks': false %>
+            <% end %>
             </td>
-            <td><%#= render 'favorites/favorite', item: @item %></td>
+            <td><%= render 'public/favorites/favorite', item: @item %></td>
             <td>コメント数: <%#= @item.item_comments.count %></td>
             <td><p class="view-count">閲覧数: <%#= @item_detail.view_counts.count %></p></td>
             <td><%= render "static_rate", item: @item %></td>
@@ -34,8 +34,8 @@
           </tr>
         </table>
       </div>
-      <div id="comments_area"><%#= render "book_comments/index", book: @book %></div>
-      <div class="new_comment"><%#= render "book_comments/form", book: @book, book_comment: @book_comment %></div>
+      <div id="comments_area"><%#= render "item_comments/index", item: @item %></div>
+      <div class="new_comment"><%#= render "item_comments/form", item: @item, item_comment: @item_comment %></div>
 
     </div>
   </div>

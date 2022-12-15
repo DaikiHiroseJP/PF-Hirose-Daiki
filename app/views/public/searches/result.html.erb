@@ -1,0 +1,52 @@
+  <% if @range == "User" %>
+  <h2>Users search for"<%= params[:word] %>"</h2>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th colspan="10"></th>
+        </tr>
+      </thead>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= image_tag customer.get_profile_image, size: '50x50' %></td>
+            <td><%= customer.name %></td>
+            <td><%= link_to 'Show', customer %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+  <h2>Items search for"<%= params[:word] %>"</h2>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th>Tag</th>
+          <th colspan="10"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td>
+              <%= link_to(item.customer)  do %>
+              <%= image_tag item.customer.get_profile_image, size:'50x50', 'data-turbolinks': false %>
+              <% end %>
+            </td>
+            <td><%= link_to item.title,item, 'data-turbolinks': false %></td>
+            <td><%= item.body %></td>
+            <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
+            <td><%= render 'public/favorites/favorite', item: item %></td>
+            <td>コメント数: <%= item.item_comments.count %></td>
+            <td><p class="view-count">閲覧数: <%= item.view_counts.count %></p></td>
+            <td><%= render "items/static_rate", item: item %></td>
+            <td><%= l item.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>

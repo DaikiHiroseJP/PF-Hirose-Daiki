@@ -32,6 +32,30 @@ class Public::ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: "You have updated book successfully."
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to items_path
+  end
+
+  def search_item
+    @items = Item.search(params[:keyword])
+
+  end
+
   private
 
   def item_params

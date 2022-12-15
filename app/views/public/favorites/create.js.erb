@@ -1,0 +1,1 @@
+$('#favorite_item_<%= params[:item_id] %>').html('<%= j(render partial: 'public/favorites/favorite', locals: {item: @item}) %>');

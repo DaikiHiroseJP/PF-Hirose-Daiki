@@ -31,16 +31,16 @@ class Public::CustomersController < ApplicationController
   end
 
   def followings
-    @users = @user.followings
+    @customers = @customer.followings
   end
 
   def followers
-    @users = @user.followers
+    @customers = @customer.followers
   end
 
   def search
-    @user = User.find(params[:user_id])
-    @books = @user.books
+    @customer = customer.find(params[:user_id])
+    @customers = @customer.items
     @book = Book.new
     if params[:created_at] == ""
       @search_book = "日付を選択してください"

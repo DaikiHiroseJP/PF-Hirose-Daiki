@@ -1,0 +1,12 @@
+<div id="favorite_item_<%= item.id %>">
+    <% if favorite = item.favorite.find_by(customer_id: current_customer.id) %>
+      <%= link_to  item_favorite_path(item.id), method: :delete, remote: true, style: "color: red;" do %>
+        <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <% end %>
+    <% else %>
+      <%= link_to  item_favorite_path(item), method: :post, remote: true do %>
+        <i class="fas fa-heart" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    <%= item.favorite.size %>
+</div>

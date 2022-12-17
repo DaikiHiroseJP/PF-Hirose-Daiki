@@ -11,31 +11,33 @@
 	<tr>
 	  <th>follows</th>
 	  <th>
-	    <%#= link_to customer_followings_path(customer) do %>
-	      <%#= customer.followings.count %>
-	    <%# end %>
+	    <%= link_to customer_followings_path(customer) do %>
+	      <%= customer.followings.count %>
+	    <% end %>
 	  </th>
 	 </tr>
 	<tr>
 	  <th>followers</th>
 	  <th>
-	    <%#= link_to customer_followers_path(customer) do %>
-	      <%#= customer.followers.count %>
-	    <%# end %>
+	    <%= link_to customer_followers_path(customer) do %>
+	      <%= customer.followers.count %>
+	    <% end %>
 	  </th>
 	</tr>
 </table>
 
 <div class='row'>
-  <% if customer == current_customer %>
+	<% if customer.email == 'guest@example.com' %>
+	  <p>ゲストユーザーはユーザー情報の編集ができません。</p>
+  <% elsif customer == current_customer %>
     <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
-    <% end %>
+  　<% end %>
   <% else %>
     <% if current_customer.following?(customer) %>
-      <%= link_to "フォロー外す", customer_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+      <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete, class: "btn btn-primary" %>
     <% else %>
-      <%= link_to "フォローする", customer_relationships_path(user.id), method: :post, class: "btn btn-success" %>
+      <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
     <% end %>
   <% end %>
 

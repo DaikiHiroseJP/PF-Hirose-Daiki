@@ -23,7 +23,7 @@
             <% end %>
             </td>
             <td><%= render 'public/favorites/favorite', item: @item %></td>
-            <td>コメント数: <%#= @item.item_comments.count %></td>
+            <td>コメント数: <%= @item.item_comments.count %></td>
             <td><p class="view-count">閲覧数: <%#= @item_detail.view_counts.count %></p></td>
             <td><%= render "static_rate", item: @item %></td>
             <% if @item.customer == current_customer %>
@@ -34,8 +34,8 @@
           </tr>
         </table>
       </div>
-      <div id="comments_area"><%#= render "item_comments/index", item: @item %></div>
-      <div class="new_comment"><%#= render "item_comments/form", item: @item, item_comment: @item_comment %></div>
+      <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
+      <div class="new_comment"><%= render "public/item_comments/form", item: @item, item_comment: @item_comment %></div>
 
     </div>
   </div>

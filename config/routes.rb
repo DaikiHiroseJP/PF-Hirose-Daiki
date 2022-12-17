@@ -10,9 +10,14 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
 }
+
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "homes#top"
   get "home/about"=>"homes#about"
+
 
 
 
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
      end
    end
    resources :items, only:[:index,:new,:create,:show,:edit,:update] do
-    resources :book_comments, only: [:create, :destroy]
+    resources :item_comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
     end
   end

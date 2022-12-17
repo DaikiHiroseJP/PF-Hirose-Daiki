@@ -12,6 +12,9 @@
         <div class="row">
           <%= link_to 'Sign up',new_customer_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
         </div>
+        <div class="row">
+        <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post %>
+        </div>
       </div>
     </div>
   </div>

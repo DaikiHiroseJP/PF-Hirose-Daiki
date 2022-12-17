@@ -23,6 +23,11 @@
         <div class="serchebar d-flex justify-content-center mb-1">
           <%= render 'public/searches/search' %>
         </div>
+        <div>
+          <%= link_to new_item_path, class:"text-reset" do %>
+            <i class="fa-solid fa-plus fa-2x rounded-circle shadow"></i>
+          <% end %>
+        </div>
         <%= yield %>
       </main>
   </body>

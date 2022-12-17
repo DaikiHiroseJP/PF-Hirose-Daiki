@@ -12,6 +12,7 @@ class Customer < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :favorite, dependent: :destroy
   has_many :favorited_items, through: :favorite, source: :item
+  has_many :item_comments, dependent: :destroy
 
   def follow(customer_id)
     relationships.create(followed_id: customer_id)
@@ -40,6 +41,15 @@ class Customer < ApplicationRecord
       @customer = Customer.where("name LIKE?","%#{word}%")
     else
       @customer = Customer.all
+    end
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "ゲスト"
+      # customer.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， customer.name = "ゲスト" なども必要
     end
   end
 

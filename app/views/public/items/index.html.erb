@@ -1,10 +1,16 @@
 <div class="container px-5 px-sm-0">
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <p>
+       <%= link_to '新しい順', items_path(latest: "true") %>
+       |<%= link_to '古い順', items_path(old: "true") %>
+       |<%= link_to '評価の高い順', items_path(star_count: "true") %>
+       |<%= link_to '一週間のいいねの多い順', items_path(favorite_week: "true") %>
+      </p>
   <div class="d-flex flex-wrap align-items-center">
   <% @items.each do |item| %>
   <div class="card w-50 mt-4 shadow-lg">
-    <%= link_to item_path(item) do %>
+    <%= link_to item_path(item), 'data-turbolinks': false do %>
       <%= image_tag item.get_image, size:"150x150", class:"card-img-top"; %>
     <% end %>
     <div class="card-body">
@@ -14,7 +20,7 @@
         </div>
         <div class="col-10">
           <p class="card-title">
-            <%= link_to(item_path(item.id), class:"text-dark") do %>
+            <%= link_to(item_path(item.id), class:"text-dark", 'data-turbolinks': false) do %>
               <strong><i class="far fa-flag"></i><span> <%= item.title %></span></strong>
             <% end %>
           </p>

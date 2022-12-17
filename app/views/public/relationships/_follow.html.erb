@@ -1,0 +1,24 @@
+  <% if customers.exists? %>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th colspan="10"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.each do |customer| %>
+          <tr>
+            <td><%= image_tag customer.get_profile_image, size: '50x50' %></td>
+            <td><%= customer.name %></td>
+            <td>フォロー数: <%= customer.followings.count %></td>
+            <td>フォロワー数: <%= customer.followers.count %></td>
+            <td><%= link_to 'Show', customer %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

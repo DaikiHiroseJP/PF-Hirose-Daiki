@@ -22,11 +22,11 @@
           <% @items.each do |item| %>
             <tr>
               <td><%= item.id %></td>
-              <td><%= link_to item_path(item) do %>
+              <td><%= link_to admin_item_path(item) do %>
             <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
             <% end %>
           </td>
-          <td><%= link_to item.title,item ,'data-turbolinks': false %></td>
+          <td><%= link_to item.title,admin_item_path(item) ,'data-turbolinks': false %></td>
           <td><%= item.body %></td>
           <td>
             <% if item.category === nil %>

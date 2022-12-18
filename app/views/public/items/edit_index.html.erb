@@ -1,0 +1,43 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  		<h1>投稿一覧編集画面</h1>
+  		<%#= render 'layouts/errors', obj: @item %>
+  		<div class="table-responsive">
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th>Tag　　</th>
+        <th colspan="8"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.each do |item| %>
+        <tr>
+          <td><%= link_to(item.customer) do %>
+            <%= image_tag item.customer.get_profile_image, size:'50x50', 'data-turbolinks': false %>
+            <% end %>
+          </td>
+          <td><%= link_to item.title,item ,'data-turbolinks': false %></td>
+          <td><%= item.body %></td>
+          <td>
+            <% if item.category === nil %>
+              no tag
+            <% else %>
+              <%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %>
+            <% end %>
+          </td>
+          <td><%= render 'public/favorites/favorite', item: item %></td>
+          <td>コメント数: <%= item.item_comments.count %></td>
+          <td><p class="view-count">閲覧数: <%= item.view_counts.count %></p></td>
+          <td><%= render "public/items/static_rate", item: item %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+  </div>
+</div>

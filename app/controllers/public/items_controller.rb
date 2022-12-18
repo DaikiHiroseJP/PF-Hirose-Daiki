@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!, only: [:create, :edit, :update, :destroy]
 
   def new
     @item = Item.new
@@ -6,24 +7,27 @@ class Public::ItemsController < ApplicationController
 
   def index
     if params[:latest]
-      @items = Item.latest
+      @items = Item.latest.published
     elsif params[:old]
-      @items = Item.old
+      @items = Item.old.published
     elsif params[:star_count]
-      @items = Item.star_count
+      @items = Item.star_count.published
     elsif params[:favorite_week]
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
-    @items = Item.includes(:favorited_customers)
+    @items = Item.includes(:favorited_customers).published
       .sort {|a,b|
       b.favorite.where(created_at: from...to).size <=>
       a.favorite.where(created_at: from...to).size
     }
     else
-      @items = Item.all
+      @items = Item.published
     end
-
-
+  end
+  
+  def edit_index
+    
+    
   end
 
   def show
@@ -74,7 +78,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :body, :category, :star, :image)
+    params.require(:item).permit(:title, :body, :category, :star, :image, :is_published_flag)
   end
 
 end

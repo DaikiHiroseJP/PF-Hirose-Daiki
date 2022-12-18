@@ -19,6 +19,10 @@ class Item < ApplicationRecord
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(star: :desc)}
 
+  scope :published, -> {where(is_published_flag: true)}
+  scope :unpublished, -> {where(is_published_flag: false)}
+
+
   def self.looks(search, word)
     if search == "perfect_match"
       @item = Item.where("title LIKE?","#{word}")

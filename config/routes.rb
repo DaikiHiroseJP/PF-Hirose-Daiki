@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   get "home/about"=>"homes#about"
 
 
-
+  #admin
+  namespace :admin do
+    resources :customers, only:[:show,:edit,:update,:index]
+    resources :items, only:[:index,:new,:create,:show,:edit,:update]
+    get '/search' => 'searches#search'
+  end
 
   #public
   scope module: :public do

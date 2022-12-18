@@ -21,7 +21,7 @@ class Public::ItemsController < ApplicationController
       a.favorite.where(created_at: from...to).size
     }
     else
-      @items = Item.published
+      @items = Item.latest.published
     end
   end
 

@@ -1,0 +1,32 @@
+<div class='container'>
+  <h4 class="col-4 bg-light text-center"><%= @customer.name %>さんの会員詳細</h4>
+  <div class='row'>
+   <table class ="table table-borderless">
+      <tr>
+        <td>会員ID</td><td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <td>氏名</td><td><%= @customer.name %>
+      </tr>
+        <td>メールアドレス</td><td><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <td>会員ステータス</td>
+        <td>
+          <% if @customer.active_for_authentication? %>
+            <p class="text-success font-weight-bold">有効</p>
+          <% else %>
+            <p class="text-secondary font-weight-bold">退会</p>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <%= link_to "編集する",edit_admin_customer_path,class: 'btn btn-success mr-5' %>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</div>

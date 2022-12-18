@@ -49,10 +49,21 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  def unsubscribe
+  end
+
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
+
   private
 
   def user_params
-    params.require(:customer).permit(:name, :introduction, :profile_image)
+    params.require(:customer).permit(:name, :introduction, :profile_image, :is_deleted)
   end
 
   def ensure_correct_user
@@ -72,6 +83,15 @@ class Public::CustomersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def reject_user
+    @customer = Customer.find_by(name: params[:customer][:first_name][:last_name])
+    if @customer
+      if @customer.valid_password?(params[:customer][:encrypted_password]) && (@customer.is_deleted == false)
+        redirect_to new_customer_registration
+      end
+    end
   end
 
 end

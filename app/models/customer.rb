@@ -16,6 +16,10 @@ class Customer < ApplicationRecord
   has_many :favorited_items, through: :favorite, source: :item
   has_many :item_comments, dependent: :destroy
 
+  def active_for_authentication?
+    super && (is_deleted==false)
+  end
+
   def follow(customer_id)
     relationships.create(followed_id: customer_id)
   end

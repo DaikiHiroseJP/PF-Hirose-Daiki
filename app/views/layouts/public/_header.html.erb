@@ -9,7 +9,7 @@
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li>
-          <%= link_to new_item_path, class: 'nav-link text-light' do %>
+          <%= link_to new_item_path, class: 'nav-link text-light', 'data-turbolinks': false do %>
             <i class="fas fa-paw"></i> 新規投稿
           <% end %>
           </li>

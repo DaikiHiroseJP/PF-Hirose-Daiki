@@ -24,10 +24,9 @@ class Public::ItemsController < ApplicationController
       @items = Item.published
     end
   end
-  
+
   def edit_index
-    
-    
+    @items = current_customer.items.latest
   end
 
   def show

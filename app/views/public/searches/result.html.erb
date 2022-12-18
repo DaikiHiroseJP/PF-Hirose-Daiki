@@ -1,3 +1,6 @@
+<div class="container px-5 px-sm-0">
+  <div class='row'>
+    <div class="col-12px-5 px-sm-0 mx-auto">
   <% if @range == "User" %>
   <h2>Users search for"<%= params[:word] %>"</h2>
     <table class='table'>
@@ -18,7 +21,6 @@
       </tbody>
     </table>
   <% else %>
-  <h2>Items search for"<%= params[:word] %>"</h2>
     <table class='table'>
       <thead>
         <tr>
@@ -33,8 +35,8 @@
         <% @items.each do |item| %>
           <tr>
             <td>
-              <%= link_to(item.customer)  do %>
-              <%= image_tag item.customer.get_profile_image, size:'50x50', 'data-turbolinks': false %>
+              <%= link_to item_path(item)  do %>
+              <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
               <% end %>
             </td>
             <td><%= link_to item.title,item, 'data-turbolinks': false %></td>
@@ -42,11 +44,14 @@
             <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
             <td><%= render 'public/favorites/favorite', item: item %></td>
             <td>コメント数: <%= item.item_comments.count %></td>
-            <td><p class="view-count">閲覧数: <%= item.view_counts.count %></p></td>
-            <td><%= render "items/static_rate", item: item %></td>
+            <td><%= render "public/items/static_rate", item: item %></td>
+            <td>By <%= item.customer.name %></td>
             <td><%= l item.created_at %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% end %>
+</div>
+</div>
+</div>

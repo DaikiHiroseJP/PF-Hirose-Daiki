@@ -2,9 +2,8 @@
 <% if customer_signed_in? %>
   <div class="search_form">
     <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([['User'], ['Item']]) %>
-      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+      投稿検索フォーム<%= f.text_field :word %>
+      <%= f.select :search, options_for_select([["新しい順","latest_field"], ["古い順","old_field"], ["評価の高い順","star_count_field"], ["一週間のいいねの多い順","favorite_week"]]) %>
       <%= f.submit "検索" %>
     <% end %>
   </div>

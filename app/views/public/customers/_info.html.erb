@@ -31,7 +31,10 @@
 	  <p>ゲストユーザーはユーザー情報の編集ができません。</p>
   <% elsif customer == current_customer %>
     <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
-      <i class="fas fa-user-cog"></i>
+      <i class="fas fa-user-cog"></i>ユーザー情報編集
+  　<% end %>
+  　<%= link_to item_edit_index_path(customer), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-edit"></i>投稿一覧確認
   　<% end %>
   <% else %>
     <% if current_customer.following?(customer) %>

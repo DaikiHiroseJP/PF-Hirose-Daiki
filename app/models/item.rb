@@ -24,21 +24,28 @@ class Item < ApplicationRecord
 
 
   def self.looks(search, word)
-    if search == "perfect_match"
-      @item = Item.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @item = Item.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @item = Item.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @item = Item.where("title LIKE?","%#{word}%")
-    else
-      @item = Item.all
-    end
+     if search == "latest_field"
+       @item = Item.where("title LIKE?","%#{word}%").published.order(created_at: :desc)
+     elsif search == "old_field"
+       @item = Item.where("title LIKE?","%#{word}%").published.order(created_at: :asc)
+     elsif search == "star_count_field"
+       @item = Item.where("title LIKE?","%#{word}%").published.order(star: :desc)
+     elsif search == "favorite_week"
+      to  = Time.current.at_end_of_day
+      from  = (to - 6.day).at_beginning_of_day
+      @items = Item.includes(:favorited_customers).published
+        .sort {|a,b|
+        b.favorite.where(created_at: from...to).size <=>
+        a.favorite.where(created_at: from...to).size
+      }
+     else
+       該当する投稿はありません。
+     end
+
   end
 
   def self.search(search_word)
-    Item.where(['category LIKE ?', "#{search_word}"])
+    Item.where(['category LIKE ?', "#{search_word}"]).published
   end
 
   def get_image

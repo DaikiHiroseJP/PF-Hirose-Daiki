@@ -34,6 +34,7 @@ Rails.application.routes.draw do
      end
    end
    resources :items, only:[:index,:new,:create,:show,:edit,:update] do
+    get '/edit_index' => 'items#edit_index'
     resources :item_comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
     end

@@ -10,7 +10,7 @@
     <tbody>
       <% customers.each do |customer| %>
         <tr>
-          <td><%= image_tag customer.get_profile_image, size: '80x80' %></td>
+          <td><%= image_tag customer.get_profile_image, size: '80x80', class:"rounded-circle" %></td>
           <td><%= customer.name %></td>
           <td>
             <% unless customer == current_customer %>

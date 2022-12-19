@@ -1,15 +1,15 @@
 <table class='table'>
-  <tr><%= image_tag customer.get_profile_image, size:'100x100' %></tr>
+  <tr><%= image_tag customer.get_profile_image, size:'100x100', class:"mb-2 rounded-circle" %></tr>
   <tr>
-	  <th>name</th>
+	  <th>名前</th>
 	  <th><%= customer.name %></th>
   </tr>
   <tr>
-	  <th>introduction</th>
+	  <th>コメント</th>
 	  <th><%= customer.introduction %></th>
 	</tr>
 	<tr>
-	  <th>follows</th>
+	  <th>フォロー中</th>
 	  <th>
 	    <%= link_to customer_followings_path(customer) do %>
 	      <%= customer.followings.count %>
@@ -17,7 +17,7 @@
 	  </th>
 	 </tr>
 	<tr>
-	  <th>followers</th>
+	  <th>フォロワー</th>
 	  <th>
 	    <%= link_to customer_followers_path(customer) do %>
 	      <%= customer.followers.count %>

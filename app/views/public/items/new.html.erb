@@ -1,7 +1,17 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto">
       <h3>新規投稿画面</h3>
+<% if current_customer.email == 'guest@example.com' %>
+	  <h3 class="mb-4 text-center">
+  ゲストユーザーは新規投稿が出来ません。</br>
+  新規投稿をするにはユーザー登録が必要です。</br>
+  下記ボタンよりログアウトして新規登録をしてください。
+  </h3>
+  <%= link_to destroy_customer_session_path, method: :delete,class: '' do %>
+     ログアウト
+  <% end %>
+<% elsif %>
 
 <%= form_with model: @item,local:true do |f| %>
   <div class="form-group">
@@ -47,6 +57,8 @@
   <div class="form-group">
     <%= f.submit class: 'btn btn-success mt-3' %>
   </div>
+<% end %>
+
 <% end %>
 
   </div>

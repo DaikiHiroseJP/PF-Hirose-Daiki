@@ -27,7 +27,7 @@
             <% end %>
           </td>
           <td><%= link_to item.title,item ,'data-turbolinks': false %></td>
-          <td><%= item.body.truncate(20) %></td>
+          <td><%= item.body.truncate(15) %></td>
           <td>
             <% if item.category === nil %>
               no tag

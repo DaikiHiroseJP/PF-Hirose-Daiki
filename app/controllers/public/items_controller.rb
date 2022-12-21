@@ -6,23 +6,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-    if params[:latest]
-      @items = Item.latest.published
-    elsif params[:old]
-      @items = Item.old.published
-    elsif params[:star_count]
-      @items = Item.star_count.published
-    elsif params[:favorite_week]
-    to  = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
-    @items = Item.includes(:favorited_customers).published
-      .sort {|a,b|
-      b.favorite.where(created_at: from...to).size <=>
-      a.favorite.where(created_at: from...to).size
-    }
-    else
-      @items = Item.latest.published
-    end
+      @items = Item.latest.published.page(params[:page]).per(12)
   end
 
   def edit_index

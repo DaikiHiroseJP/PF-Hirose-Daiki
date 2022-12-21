@@ -28,7 +28,7 @@
 
 <div class='row'>
 	<% if customer.email == 'guest@example.com' %>
-	  <p>ゲストユーザーはユーザー情報の編集ができません。</p>
+	  <p>ゲストユーザーは</br>ユーザー情報の編集ができません。</p>
   <% elsif customer == current_customer %>
     <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>ユーザー情報編集

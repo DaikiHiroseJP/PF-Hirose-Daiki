@@ -8,9 +8,7 @@
   新規投稿をするにはユーザー登録が必要です。</br>
   下記ボタンよりログアウトして新規登録をしてください。
   </h3>
-  <%= link_to destroy_customer_session_path, method: :delete,class: '' do %>
-     ログアウト
-  <% end %>
+  <div class="text-center"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'btn btn-danger btn-bg' %></div>
 <% elsif %>
 
 <%= form_with model: @item,local:true do |f| %>

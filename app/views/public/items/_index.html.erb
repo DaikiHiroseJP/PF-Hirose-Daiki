@@ -1,7 +1,5 @@
-<div class="card-deck mb-3 ">
-  <div class="row">
+<div class="card-columns mb-3 ">
     <% items.each do |item| %>
-    <div class="col-sm-4 mb-3">
       <div class="card h-100">
         <%= link_to item_path(item), 'data-turbolinks': false do %>
           <%= image_tag item.get_image, size:"200x200", class:"card-img-top"; %>
@@ -17,8 +15,6 @@
             <% end %>
         </div>
       </div>
-    </div>
     <% end %>
-  </div>
 </div>
-  <%#= paginate post_images %>
+  <%= paginate items %>

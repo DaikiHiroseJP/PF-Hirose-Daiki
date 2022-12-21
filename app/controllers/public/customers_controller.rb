@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :set_user, only: [:followings, :followers]
 
   def show
     @customer = Customer.find(params[:id])
@@ -7,6 +9,7 @@ class Public::CustomersController < ApplicationController
     #@yesterday_book = @books.created_yesterday
     #@this_week_book = @books.created_this_week
     #@last_week_book = @books.created_last_week
+    @item = Item.find(params[:id])
   end
 
   def index

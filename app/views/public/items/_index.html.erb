@@ -1,26 +1,24 @@
- <% items.each do |item| %>
-  <div class="card w-50 mt-4 shadow-lg">
-    <%= link_to item_path(item), 'data-turbolinks': false do %>
-      <%= image_tag item.get_image, size:"150x150", class:"card-img-top"; %>
-    <% end %>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-2">
-          <%= image_tag item.customer.get_profile_image, size:"50x50", class:"mt-3 rounded-circle"; %>
-        </div>
-        <div class="col-10">
-          <p class="card-title">
+<div class="card-deck mb-3 ">
+  <div class="row">
+    <% items.each do |item| %>
+    <div class="col-sm-4 mb-3">
+      <div class="card h-100">
+        <%= link_to item_path(item), 'data-turbolinks': false do %>
+          <%= image_tag item.get_image, size:"200x200", class:"card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+            <div class="d-flex">
             <%= link_to(item_path(item.id), class:"text-dark", 'data-turbolinks': false) do %>
-              <strong><i class="far fa-flag"></i><span> <%= item.title %></span></strong>
+              <strong class="card-title"><i class="far fa-flag"></i><span><%= item.title %></span></strong>
+            <% end %>　<%= render 'public/favorites/favorite', item: item %></div>
+            <p class="card-text"><%= item.body.truncate(10) %></p>
+            <%= link_to(item.customer) do %>
+              <span><i class="fas fa-user"></i> By <%= item.customer.name %></span>
             <% end %>
-          </p>
-          <p class="card-text">説明：<%= item.body %></p>
-          <span><i class="fas fa-user"></i> By <%= item.customer.name %></span>
-          <span><%#= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %></span>
         </div>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
-  <%#= paginate post_images %>
 </div>
+  <%#= paginate post_images %>

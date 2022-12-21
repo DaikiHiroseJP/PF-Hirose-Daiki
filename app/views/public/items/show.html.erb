@@ -1,40 +1,34 @@
-<div class='container px-5 px-sm-0'>
+<div class='container'>
   <div class='row'>
-    <div class='form'>
-    <div class='col-md-12 offset-md-1'>
-    <h2>投稿詳細</h2>
-      <div class="table-responsive">
-        <table class='table'>
-          <tr>
-            <td><%= link_to(@item.customer) do %>
-              <%= image_tag @item.customer.get_profile_image, size:"100x100" %><br>
-              <%= @item.customer.name %>
+            <div class='col-4 mb-5'>
+              <h2>投稿詳細</h2>
+              <%= link_to(@item.customer) do %>
+              <%= image_tag @item.get_image, size:"350x350" %><br>
               <% end %>
-            </td>
-            <td><%= link_to @item.title, @item %></td>
-            <td><%= @item.body %></td>
-            <td>
-            <% if @item.category === nil %>
-              no tag
-            <% else %>
-              <%= link_to @item.category, search_item_path(keyword: @item.category), 'data-turbolinks': false %>
-            <% end %>
-            </td>
-            <td><%= render 'public/favorites/favorite', item: @item %></td>
-            <td>コメント数: <%= @item.item_comments.count %></td>
-            <td><p class="view-count">閲覧数: <%#= @item_detail.view_counts.count %></p></td>
-            <td><%= render "static_rate", item: @item %></td>
-            <% if @item.customer == current_customer %>
-              <td><%= link_to 'Edit', edit_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %></td>
-              <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-            <% end %>
-
-          </tr>
-        </table>
-      </div>
+            </div>
+            <div class="col-6 mb-3">
+              <h3 class="mt-2 mb-3"><strong></br><%=  @item.title %></strong></h3>
+              <p class="mb-3"><%= @item.body %></p>
+              <p>
+              <% if @item.category === nil %>
+                no tag
+              <% else %>
+                <%= link_to @item.category, search_item_path(keyword: @item.category), 'data-turbolinks': false %>
+              <% end %>
+              </p>
+              <p><%= render 'public/favorites/favorite', item: @item %></p>
+              <p>コメント数: <%= @item.item_comments.count %></p>
+               <p><%= render "public/items/static_rate", item: @item %></p>
+               <p><%= link_to(@item.customer) do %>
+                    <span><i class="fas fa-user"></i> By <%= @item.customer.name %></span>
+                  <% end %>
+               <%= link_to '編集', edit_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
+               </p>
+            </div>
+      <div class="col-8">
       <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
       <div class="new_comment"><%= render "public/item_comments/form", item: @item, item_comment: @item_comment %></div>
+      </div>
 
-    </div>
   </div>
 </div>

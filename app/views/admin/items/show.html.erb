@@ -3,32 +3,29 @@
     <div class='form'>
     <div class='col-md-12 offset-md-1'>
     <h2>投稿詳細</h2>
-      <div class="table-responsive">
-        <table class='table'>
-          <tr>
-            <td><%= link_to(@item.customer) do %>
+            <div class='col-md-4'>
+              <%= link_to(@item.customer) do %>
               <%= image_tag @item.get_image, size:"200x200" %><br>
               <%= @item.customer.name %>
               <% end %>
-            </td>
-            <td><%= link_to @item.title, @item %></td>
-            <td><%= @item.body %></td>
-            <td>
+            </div>
+            <div class="col-md-5">
+            <h3 class="mt-2"><strong><%= link_to @item.title, @item %></strong></h3>
+            <p class="mb-5"><%= @item.body %></p>
+            <p class="mb-5">
             <% if @item.category === nil %>
               no tag
             <% else %>
               <%= link_to @item.category, search_item_path(keyword: @item.category), 'data-turbolinks': false %>
             <% end %>
-            </td>
-            <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= @item.favorite.size %></td>
-            <td>コメント数: <%= @item.item_comments.count %></td>
-            <td><p class="view-count">閲覧数: <%#= @item_detail.view_counts.count %></p></td>
-            <td><%= render "public/items/static_rate", item: @item %></td>
-            <td><%= link_to 'Edit', edit_admin_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %></td>
-            <td><%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            </p>
+            <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= @item.favorite.size %>
+            コメント数: <%= @item.item_comments.count %>
+           <%= render "public/items/static_rate", item: @item %>
+            <%= link_to 'Edit', edit_admin_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
+           <%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
 
-          </tr>
-        </table>
+          
       </div>
       <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
 

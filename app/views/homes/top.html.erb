@@ -1,22 +1,42 @@
 <div class="container">
   <div class="row">
     <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-      <h1>welcome to <i class="fas fa-book"></i><strong>Bookers</strong>  !!</h1>
-      <p>In  <i class="fas fa-book"></i><strong>Bookers</strong>, </p>
-      <p>you can share and exchange  your opinions , inpressions , and emotions</p>
-      <p> about various books!</p>
-      <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-          <%= link_to 'Log in',new_customer_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-        </div>
-        <div class="row">
-          <%= link_to 'Sign up',new_customer_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-        </div>
-        <div class="row">
-        <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post %>
+      <h1 class="px-3 mx-auto textsh col-12"><i class="fas fa-cat"></i><strong>Cats Lab</strong><i class="fas fa-paw"></i></h1>
+    <div class="swiper-area">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swiperimg"><%= image_tag 'cat1', class:"swiperimg" %></div>
+          <div class="swiper-slide swiperimg"><%= image_tag '25081154_m', class:"swiperimg" %></div>
+          <div class="swiper-slide swiperimg"><%= image_tag '25195488_s', class:"swiperimg" %></div>
         </div>
       </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
+     <div class="swiper-pagination"></div>
+    </div>
+    <div class="col-12">
+        <%#= image_tag 'cake1.jpg', size: '400x350', class: 'card-img' %>
+        <div class="card-img-overlay font-weight-bold col-12">
+          <h4 class="text-black text-center">
+            ようこそ、Cats Labへ！</br>
+            このサイトは、猫用品のレビューサイトです！</br>
+            ゲストユーザーとして商品の閲覧はできますが、</br>
+            投稿をするにはユーザー登録が必要になります。
+          </h4>
+        </div>
+    </div>
+      <!--<div class="btn-wrapper col-10 mx-auto">-->
+      <!--  <div class="row">-->
+      <!--    <%= link_to 'Log in',new_customer_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>-->
+      <!--  </div>-->
+      <!--  <div class="row">-->
+      <!--    <%= link_to 'Sign up',new_customer_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>-->
+      <!--  </div>-->
+      <!--  <div class="row">-->
+      <!--  <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post %>-->
+      <!--  </div>-->
+      <!--</div>-->
   </div>
 </div>
 

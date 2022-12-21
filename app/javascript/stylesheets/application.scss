@@ -1,2 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+
+.textsh{
+    text-shadow: 3px 4px 3px rgb(61 70 70);
+    font-size: 70px;
+}
+
+.swiper{
+    width: 600px;
+    height: 300px;
+}
+
+.swiperimg{
+    max-width: 100%;
+    height: auto;
+    display:flex;
+    align-items: center;
+
+}

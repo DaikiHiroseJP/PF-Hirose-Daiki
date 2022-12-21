@@ -3,9 +3,9 @@
   <head>
     <title>PFHiroseDaiki</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -25,5 +25,56 @@
         </div>
         <%= yield %>
       </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper('.swiper', {
+      // Optional parameters
+
+      slidesPerView: 1, // コンテナ内に表示させるスライド数（CSSでサイズ指定する場合は 'auto'）
+      spaceBetween: 0, // スライド間の余白（px）
+      centeredSlides: true, // アクティブなスライドを中央に配置する
+
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      loop: true,  // 無限ループさせる
+      loopAdditionalSlides: 1, // 無限ループさせる場合に複製するスライド数
+
+      speed: 300, // スライドアニメーションのスピード（ミリ秒）
+
+      autoplay: { // 自動再生させる
+        delay: 10000, // 次のスライドに切り替わるまでの時間（ミリ秒）
+        disableOnInteraction: false, // ユーザーが操作しても自動再生を止めない
+        waitForTransition: false, // アニメーションの間も自動再生を止めない（最初のスライドの表示時間を揃えたいときに）
+      },
+
+      grabCursor: true, // PCでマウスカーソルを「掴む」マークにする
+      watchSlidesProgress: true, // スライドの進行状況を監視する
+
+      pagination: {
+        el: '.swiper-pagination', // ページネーション要素のクラス
+        clickable: true, // クリックによるスライド切り替えを有効にする
+        type: 'bullets' // 'bullets'（デフォルト） | 'fraction' | 'progressbar'
+      },
+
+      scrollbar: {
+        el: '.swiper-scrollbar', // スクロールバー要素のクラス
+      },
+
+      breakpoints: { // ブレークポイント
+        600: { // 画面幅600px以上で適用
+          slidesPerView: 2,
+        },
+          1025: { // 画面幅1025px以上で適用
+          slidesPerView: 2,
+          spaceBetween: 10,
+        }
+      },
+
+    });
+    </script>
   </body>
 </html>

@@ -16,6 +16,7 @@
             <th>コメント数</th>
             <th>星レビュー</th>
             <th>公開状態</th>
+            <th>管理者公開状態</th>
           </tr>
         </thead>
         <tbody>
@@ -26,8 +27,8 @@
             <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
             <% end %>
           </td>
-          <td><%= link_to item.title,admin_item_path(item) ,'data-turbolinks': false %></td>
-          <td><%= item.body %></td>
+          <td><%= link_to item.title.truncate(10),admin_item_path(item) ,'data-turbolinks': false %></td>
+          <td><%= item.body.truncate(10) %></td>
           <td>
             <% if item.category === nil %>
               no tag
@@ -40,9 +41,16 @@
           <td><%= render "public/items/static_rate", item: item %></td>
           <td>
             <% if item.is_published_flag === true %>
-              公開
+              <p class="text-success font-weight-bold">公開</p>
             <% else %>
-              非公開
+              <p class="text-danger font-weight-bold">非公開</p>
+            <% end %>
+          </td>
+          <td>
+            <% if item.is_admin_published_flag === true %>
+              <p class="text-success font-weight-bold">公開</p>
+            <% else %>
+              <p class="text-danger font-weight-bold">非公開</p>
             <% end %>
           </td>
           <% end %>

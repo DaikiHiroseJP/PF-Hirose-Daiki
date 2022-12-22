@@ -6,7 +6,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-      @items = Item.latest.published.page(params[:page]).per(12)
+      @items = Item.latest.published.admin_published.page(params[:page]).per(12)
   end
 
   def edit_index
@@ -14,9 +14,11 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
-    if Item.find(params[:id]).is_published_flag == false
-      redirect_to items_path
-    else 
+    if Item.find(params[:id]).is_admin_published_flag == false
+      redirect_to items_path, notice: "管理者によって非公開にされています。"
+    elsif Item.find(params[:id]).is_published_flag == false
+      redirect_to items_path, notice: "ユーザーによって非公開にされています。"
+    else
     @item = Item.find(params[:id])
     @customer = Customer.find_by(id: @item.customer_id)
     @item_comment = ItemComment.new

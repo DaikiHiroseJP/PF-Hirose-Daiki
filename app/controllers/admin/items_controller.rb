@@ -40,6 +40,6 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :body, :category, :star, :image, :is_published_flag)
+    params.require(:item).permit(:title, :body, :category, :star, :image, :is_published_flag, :is_admin_published_flag)
   end
 end

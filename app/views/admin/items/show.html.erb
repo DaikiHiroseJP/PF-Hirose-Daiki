@@ -1,31 +1,32 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-    <div class='form'>
-    <div class='col-md-12 offset-md-1'>
+    <div class='col-md-4 mb-5'>
     <h2>投稿詳細</h2>
-            <div class='col-md-4'>
               <%= link_to(@item.customer) do %>
-              <%= image_tag @item.get_image, size:"200x200" %><br>
-              <%= @item.customer.name %>
+              <%= image_tag @item.get_image, size:"300x300" %><br>
               <% end %>
             </div>
-            <div class="col-md-5">
-            <h3 class="mt-2"><strong><%= link_to @item.title, @item %></strong></h3>
-            <p class="mb-5"><%= @item.body %></p>
-            <p class="mb-5">
+            <div class="col-md-8 mb-3">
+            <h3 class="mt-2 mb-3"><strong></br><%=  @item.title %></strong></h3>
+            <p class="mb-3"><%= @item.body %></p>
+            <p>
             <% if @item.category === nil %>
               no tag
             <% else %>
               <%= link_to @item.category, search_item_path(keyword: @item.category), 'data-turbolinks': false %>
             <% end %>
             </p>
-            <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= @item.favorite.size %>
-            コメント数: <%= @item.item_comments.count %>
-           <%= render "public/items/static_rate", item: @item %>
-            <%= link_to 'Edit', edit_admin_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
-           <%= link_to 'Destroy', @item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+            <p><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= @item.favorite.size %></p>
+            <p>コメント数: <%= @item.item_comments.count %></p>
+              <p><%= render "public/items/static_rate", item: @item %></p>
+              <p><%= link_to(@item.customer) do %>
+                <span><i class="fas fa-user"></i> By <%= @item.customer.name %></span>
+                <% end %>
+                <%= link_to '編集', edit_admin_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
+              </p>
+            </div>
 
-          
+
       </div>
       <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
 

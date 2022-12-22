@@ -40,9 +40,9 @@
           <td><%= render "public/items/static_rate", item: item %></td>
           <td>
             <% if item.is_published_flag === true %>
-              公開
+              <p class="text-success font-weight-bold">公開</p>
             <% else %>
-              非公開
+              <p class="text-danger font-weight-bold">非公開</p>
             <% end %>
           </td>
           <td><%= link_to '編集', edit_item_path(item), class: "btn btn-sm btn-success", 'data-turbolinks': false %></td>

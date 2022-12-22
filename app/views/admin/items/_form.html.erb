@@ -20,26 +20,18 @@
     <%= f.label :is_published_flag, "非公開", value: false %>
     <%= f.radio_button :is_published_flag,'false' %>
   </div>
+  <div>
+    <%= f.label :is_admin_published_flag, "管理者公開", value: true %>
+    <%= f.radio_button :is_admin_published_flag, 'true' %>
+  </div>
+  <div>
+    <%= f.label :is_admin_published_flag, "管理者非公開", value: false %>
+    <%= f.radio_button :is_admin_published_flag,'false' %>
+  </div>
 
     <div class="form-group">
-      Rate
-      <div id="star"></div>
+      <%= render "public/items/static_rate", item: item %>
     </div>
-
-  <script>
-    $(document).on('turbolinks:load', function() {
-    $('#star').empty();
-    let elem = document.querySelector('#star');
-    elem.innerHTML = ""
-    let opt = {
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'item[star]',
-    };
-    raty(elem,opt);
-    });
-  </script>
 
   <div class="form-group">
     <%= f.submit  "変更を保存", class: "btn btn-success px-4 mt-3" %>

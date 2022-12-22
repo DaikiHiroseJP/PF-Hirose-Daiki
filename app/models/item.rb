@@ -21,6 +21,8 @@ class Item < ApplicationRecord
 
   scope :published, -> {where(is_published_flag: true)}
   scope :unpublished, -> {where(is_published_flag: false)}
+  scope :admin_published, -> {where(is_admin_published_flag: true)}
+  scope :admin_unpublished, -> {where(is_admin_published_flag: false)}
 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
@@ -28,15 +30,15 @@ class Item < ApplicationRecord
 
   def self.looks(search, word)
      if search == "latest_field"
-       @item = Item.where("title LIKE?","%#{word}%").published.order(created_at: :desc)
+       @item = Item.where("title LIKE?","%#{word}%").published.admin_published.order(created_at: :desc)
      elsif search == "old_field"
-       @item = Item.where("title LIKE?","%#{word}%").published.order(created_at: :asc)
+       @item = Item.where("title LIKE?","%#{word}%").published.admin_published.order(created_at: :asc)
      elsif search == "star_count_field"
-       @item = Item.where("title LIKE?","%#{word}%").published.order(star: :desc)
+       @item = Item.where("title LIKE?","%#{word}%").published.admin_published.order(star: :desc)
      elsif search == "favorite_week"
       to  = Time.current.at_end_of_day
       from  = (to - 6.day).at_beginning_of_day
-      @items = Item.includes(:favorited_customers).published
+      @items = Item.includes(:favorited_customers).published.admin_published
         .sort {|a,b|
         b.favorite.where(created_at: from...to).size <=>
         a.favorite.where(created_at: from...to).size

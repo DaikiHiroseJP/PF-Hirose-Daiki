@@ -1,8 +1,8 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-  		<h1>Editing item</h1>
-  		<%#= render 'layouts/errors', obj: @item %>
+  		<h1>投稿編集</h1>
+  		<%= render 'layouts/errors', obj: @item %>
   		<%= render 'form', item: @item %>
   		<%= link_to 'Show', @item %> |
   		<%= link_to 'Back', items_path, class: "back" %>

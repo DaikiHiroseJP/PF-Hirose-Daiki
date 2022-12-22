@@ -1,13 +1,13 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <%= render 'layouts/errors', obj: @item %>
-            <div class='col-md-4 mb-5'>
+            <div class='col-md-4 col-sm-2 mb-5 offset-md-2'>
               <h2>投稿詳細</h2>
               <%= link_to(@item.customer) do %>
               <%= image_tag @item.get_image, size:"300x300" %>
               <% end %>
             </div>
-            <div class="col-md-8 mb-3">
+            <div class="col-md-6 col-sm-4 mb-3">
               <h3 class="mt-2 mb-3"><strong></br><%=  @item.title %></strong></h3>
               <p class="mb-3"><%= @item.body %></p>
               <p>
@@ -26,9 +26,10 @@
                <%= link_to '編集', edit_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
                </p>
             </div>
-  </div>
-  <div class="col-lg-8 col-12">
+
+    <div class="col-lg-8 col-12 offset-md-2">
       <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
       <div class="new_comment mt-5"><%= render "public/item_comments/form", item: @item, item_comment: @item_comment %></div>
-      </div>
+    </div>
+  </div>
 </div>

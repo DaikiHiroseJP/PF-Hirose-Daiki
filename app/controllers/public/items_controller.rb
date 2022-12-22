@@ -14,13 +14,16 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    if Item.find(params[:id]).is_published_flag == false
+      redirect_to items_path
+    else 
     @item = Item.find(params[:id])
     @customer = Customer.find_by(id: @item.customer_id)
     @item_comment = ItemComment.new
     @item_detail = Item.find(params[:id])
     #unless ViewCount.find_by(customer_id: current_customer.id, item_id: @item_detail.id)
       #current_customer.view_counts.create(item_id: @item_detail.id)
-    #end
+    end
   end
 
   def create

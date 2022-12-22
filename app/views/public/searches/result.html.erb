@@ -4,30 +4,56 @@
   <% if @range == "User" %>
   <h2>Users search for"<%= params[:word] %>"</h2>
     <table class='table'>
-      <thead>
+    <thead>
+      <tr>
+        <th>イメージ</th>
+        <th>名前</th>
+        <th>フォロー</th>
+        <th>フォロワー</th>
+        <th colspan="8"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% customers.each do |customer| %>
         <tr>
-          <th>image</th>
-          <th>name</th>
-          <th colspan="10"></th>
+          <td><%= image_tag customer.get_profile_image, size: '70x70', class:"rounded-circle" %></td>
+          <td><h4><%= customer.name %></h4></td>
+          <td><h4>
+            <%= link_to customer_followings_path(customer) do %>
+            <%= customer.followings.count %>
+            <% end %>
+          </h4></td>
+          <td><h4>
+            <%= link_to customer_followers_path(customer) do %>
+            <%= customer.followers.count %>
+            <% end %>
+          </h4></td>
+          <td>
+            <% unless customer == current_customer %>
+              <% if current_customer.following?(customer) %>
+                <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete %>
+              <% else %>
+                <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to 'Show', customer, 'data-turbolinks': false %></td>
         </tr>
-      </thead>
-        <% @customers.each do |customer| %>
-          <tr>
-            <td><%= image_tag customer.get_profile_image, size: '50x50' %></td>
-            <td><%= customer.name %></td>
-            <td><%= link_to 'Show', customer %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
   <% else %>
     <table class='table'>
       <thead>
         <tr>
           <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
-          <th>Tag</th>
+          <th>タイトル</th>
+          <th>内容</th>
+          <th>タグ</th>
+          <th>いいね</th>
+          <th></th>
+          <th>星レビュー</th>
+          <th>ユーザー</th>
           <th colspan="10"></th>
         </tr>
       </thead>
@@ -40,13 +66,12 @@
               <% end %>
             </td>
             <td><%= link_to item.title,item, 'data-turbolinks': false %></td>
-            <td><%= item.body %></td>
+            <td><%= item.body.truncate(15) %></td>
             <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
             <td><%= render 'public/favorites/favorite', item: item %></td>
             <td>コメント数: <%= item.item_comments.count %></td>
             <td><%= render "public/items/static_rate", item: item %></td>
             <td>By <%= item.customer.name %></td>
-            <td><%= l item.created_at %></td>
           </tr>
         <% end %>
       </tbody>

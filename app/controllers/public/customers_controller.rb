@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.all
+    @customers = Customer.undeleted
   end
 
   def edit
@@ -43,7 +43,6 @@ class Public::CustomersController < ApplicationController
   def search
     @customer = customer.find(params[:user_id])
     @customers = @customer.items
-    @book = Book.new
     if params[:created_at] == ""
       @search_book = "日付を選択してください"
     else

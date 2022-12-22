@@ -19,6 +19,9 @@ class Customer < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: {  maximum: 50 }
 
+  scope :deleted, -> {where(is_deleted: true)}
+  scope :undeleted, -> {where(is_deleted: false)}
+
   def active_for_authentication?
     super && (is_deleted==false)
   end
@@ -40,16 +43,12 @@ class Customer < ApplicationRecord
   end
 
   def self.looks(search, word)
-    if search == "perfect_match"
-      @customer = Customer.where("name LIKE?", "#{word}")
-    elsif search == "forward_match"
-      @customer = Customer.where("name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @customer = Customer.where("name LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @customer = Customer.where("name LIKE?","%#{word}%")
+    if search == "latest_field"
+      @customer = Customer.where("name LIKE?","%#{word}%").undeleted.order(created_at: :desc)
+    elsif search == "old_field"
+      @customer = Customer.where("name LIKE?","%#{word}%").undeleted.order(created_at: :asc)
     else
-      @customer = Customer.all
+      該当するユーザーはありません。
     end
   end
 

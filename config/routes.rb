@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   #public
   scope module: :public do
+    get "customer_search" => "searches#customer_search"
     get "search" => "searches#search"
     get "search_item" => "items#search_item"
     get '/customers_index' => 'customers#index'

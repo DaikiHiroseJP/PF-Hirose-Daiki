@@ -1,7 +1,7 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <%= link_to root_path,class: 'nav-link text-light', 'data-turbolinks': false do %><h5><i class="fas fa-cat"></i><span>Cats Lab</span></h5><% end %>
+      <%= link_to root_path,class: 'nav-link text-dark', 'data-turbolinks': false do %><h5><i class="fas fa-cat"></i><span>Cats Lab</span></h5><% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,48 +9,48 @@
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li>
-          <%= link_to new_item_path, class: 'nav-link text-light', 'data-turbolinks': false do %>
+          <%= link_to new_item_path, class: 'nav-link text-dark', 'data-turbolinks': false do %>
             <i class="fas fa-paw"></i> 新規投稿
           <% end %>
           </li>
           <li>
-            <%= link_to customer_path(current_customer),class: 'nav-link text-light', 'data-turbolinks': false do %>
+            <%= link_to customer_path(current_customer),class: 'nav-link text-dark', 'data-turbolinks': false do %>
               <i class="fas fa-home"></i> マイページ
             <% end %>
           </li>
           <li>
-            <%=  link_to customers_index_path,class: 'nav-link text-light', 'data-turbolinks': false do %>
+            <%=  link_to customers_index_path,class: 'nav-link text-dark', 'data-turbolinks': false do %>
               <i class="fas fa-users"></i> ユーザー一覧
             <% end %>
           </li>
           <li>
-            <%=  link_to items_path ,class: 'nav-link text-light', 'data-turbolinks': false do %>
+            <%=  link_to items_path ,class: 'nav-link text-dark', 'data-turbolinks': false do %>
               <i class="fas fa-book-open"></i> 投稿一覧
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
+            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to root_path,class: 'nav-link text-light', 'data-turbolinks': false do %>
+            <%= link_to root_path,class: 'nav-link text-dark', 'data-turbolinks': false do %>
               <i class="fas fa-home"></i> トップページ
             <% end %>
           </li>
           <li>
-            <%= link_to home_about_path,class: 'nav-link text-light' do %>
+            <%= link_to home_about_path,class: 'nav-link text-dark' do %>
               <i class="fas fa-link"></i> アバウトページ
             <% end %>
           </li>
           <li>
-            <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
+            <%= link_to new_customer_registration_path,class: 'nav-link text-dark' do %>
               <i class="fas fa-user-plus"></i> 新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
+            <%= link_to new_customer_session_path ,class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
           </li>

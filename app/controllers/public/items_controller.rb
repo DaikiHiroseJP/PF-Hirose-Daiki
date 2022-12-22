@@ -10,7 +10,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def edit_index
-    @items = current_customer.items.latest
+    @items = current_customer.items.latest.page(params[:page]).per(10)
   end
 
   def show

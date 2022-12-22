@@ -2,56 +2,59 @@
   <div class='row'>
     <div class="col-12 px-5 px-sm-0 mx-auto">
   		<h1>投稿一覧確認画面</h1>
-  		<%#= render 'layouts/errors', obj: @item %>
-  		<div class="table-responsive">
-  <table class='table table-hover table-inverse'>
-    <thead>
-      <tr>
-        <th></th>
-        <th>タイトル</th>
-        <th>内容</th>
-        <th>タグ　　</th>
-        <th>いいね</th>
-        <th>コメント数</th>
-        <th>星レビュー</th>
-        <th>公開状態</th>
-        <th colspan="8"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <%= form_with model: @item,local:true do |f| %>
-      <% @items.each do |item| %>
-        <tr>
-          <td><%= link_to item_path(item) do %>
-            <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
-            <% end %>
-          </td>
-          <td><%= link_to item.title,item ,'data-turbolinks': false %></td>
-          <td><%= item.body.truncate(15) %></td>
-          <td>
-            <% if item.category === nil %>
-              no tag
-            <% else %>
-              <%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %>
-            <% end %>
-          </td>
-          <td><%= render 'public/favorites/favorite', item: item %></td>
-          <td>コメント数: <%= item.item_comments.count %></td>
-          <td><%= render "public/items/static_rate", item: item %></td>
-          <td>
-            <% if item.is_published_flag === true %>
-              <p class="text-success font-weight-bold">公開</p>
-            <% else %>
-              <p class="text-danger font-weight-bold">非公開</p>
-            <% end %>
-          </td>
-          <td><%= link_to '編集', edit_item_path(item), class: "btn btn-sm btn-success", 'data-turbolinks': false %></td>
-          <td><%= link_to '削除', item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-        </tr>
-      <% end %>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+      <div class="table-responsive">
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>タグ　　</th>
+            <th>いいね</th>
+            <th>コメント数</th>
+            <th>星レビュー</th>
+            <th>公開状態</th>
+            <th colspan="8"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <%= form_with model: @item,local:true do |f| %>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= link_to item_path(item) do %>
+                <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
+                <% end %>
+              </td>
+              <td><%= link_to item.title,item ,'data-turbolinks': false %></td>
+              <td><%= item.body.truncate(15) %></td>
+              <td>
+                <% if item.category === nil %>
+                  no tag
+                <% else %>
+                  <%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %>
+                <% end %>
+              </td>
+              <td><%= render 'public/favorites/favorite', item: item %></td>
+              <td>コメント数: <%= item.item_comments.count %></td>
+              <td><%= render "public/items/static_rate", item: item %></td>
+              <td>
+                <% if item.is_published_flag === true %>
+                  <p class="text-success font-weight-bold">公開</p>
+                <% else %>
+                  <p class="text-danger font-weight-bold">非公開</p>
+                <% end %>
+              </td>
+              <td><%= link_to '編集', edit_item_path(item), class: "btn btn-sm btn-success", 'data-turbolinks': false %></td>
+              <td><%= link_to '削除', item, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
+<div class=" d-flex mb-3 justify-content-center">
+  <%= paginate @items, theme: 'twitter-bootstrap-4' %>
+</div>
 </div>

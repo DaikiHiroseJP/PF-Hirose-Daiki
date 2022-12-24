@@ -31,11 +31,11 @@ class Item < ApplicationRecord
 
   def self.looks(search, word)
      if search == "latest_field"
-       @item = Item.where("title LIKE?","%#{word}%").published.admin_published.order(created_at: :desc)
+       @items = Item.where("title LIKE?","%#{word}%").published.admin_published.order(created_at: :desc)
      elsif search == "old_field"
-       @item = Item.where("title LIKE?","%#{word}%").published.admin_published.order(created_at: :asc)
+       @items = Item.where("title LIKE?","%#{word}%").published.admin_published.order(created_at: :asc)
      elsif search == "star_count_field"
-       @item = Item.where("title LIKE?","%#{word}%").published.admin_published.order(star: :desc)
+       @items = Item.where("title LIKE?","%#{word}%").published.admin_published.order(star: :desc)
      elsif search == "favorite_week"
       to  = Time.current.at_end_of_day
       from  = (to - 6.day).at_beginning_of_day

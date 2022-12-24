@@ -59,8 +59,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def search_item
-    @items = Item.search(params[:keyword])
-
+    @items = Item.search(params[:keyword]).page(params[:page]).per(10)
   end
 
   private

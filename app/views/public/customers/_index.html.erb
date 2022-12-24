@@ -26,10 +26,12 @@
           </h4></td>
           <td class="align-middle">
             <% unless customer == current_customer %>
-              <% if current_customer.following?(customer) %>
-                <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete %>
+              <% if current_customer.email == 'guest@example.com' %>
+                ゲストユーザーは</br>フォロー出来ません。
+              <% elsif current_customer.following?(customer) %>
+                <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete, class: "btn btn-primary" %>
               <% else %>
-                <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
+                <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
               <% end %>
             <% end %>
           </td>

@@ -29,13 +29,11 @@
   justify-content: center;
 }
 
-body {
+footer {
+    height: 100px;
     background-color: #f5f5f5;
 }
 
-header {
-    background-color: #ffffff;
-}
 
 .list-view {
     margin-bottom: 20px;
@@ -98,4 +96,29 @@ header {
   border-color: #808080;
 }
 
+.navbar{
+    background-color: #f5f5f5;
+}
 
+body {
+    background-image: url("/assets/haikei2.jpg");
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.form {
+    background-color: #ffffff;
+}
+
+tbody {
+    background-color: #ffffff;
+}
+
+.btn-block {
+    background-color: #ffffff;
+}
+
+thead {
+    background-color: #ffffff;
+}

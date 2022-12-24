@@ -3,6 +3,9 @@
     <%= render 'public/searches/search' %>
   </div>
   <div class='row'>
+    <% if @customer.is_deleted === true %>
+      <h4>退会済みのユーザーです。</h4>
+    <% else %>
     <div class="col-md-3">
     <h3>マイページ</h3>
     <%= render 'info', customer: @customer %>
@@ -11,5 +14,6 @@
       <h2>投稿一覧</h2>
       <%= render 'public/items/index',items: @items %>
     </div>
+    <% end %>
  </div>
 </div>

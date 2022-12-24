@@ -39,7 +39,7 @@ Rails.application.routes.draw do
        patch 'withdraw'
      end
    end
-   resources :items, only:[:index,:new,:create,:show,:edit,:update] do
+   resources :items, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
     get '/edit_index' => 'items#edit_index'
     resources :item_comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]

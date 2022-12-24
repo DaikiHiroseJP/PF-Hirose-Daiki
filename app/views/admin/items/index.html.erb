@@ -27,13 +27,13 @@
             <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
             <% end %>
           </td>
-          <td><%= link_to item.title.truncate(10),admin_item_path(item) ,'data-turbolinks': false %></td>
-          <td><%= item.body.truncate(10) %></td>
+          <td><%= link_to item.title.truncate(8),admin_item_path(item) ,'data-turbolinks': false %></td>
+          <td><%= item.body.truncate(12) %></td>
           <td>
             <% if item.category === nil %>
               no tag
             <% else %>
-              <%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %>
+              <%= item.category.truncate(5) %>
             <% end %>
           </td>
           <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= item.favorite.size %></td>
@@ -57,9 +57,9 @@
         </tbody>
       </table>
     </div>
-    <div class="mx-auto">
-  	  <%= paginate @items %>
-  	</div>
+    <div class=" mx-auto">
+      <%= paginate @items %>
+    </div>
   </div>
 </div>
 

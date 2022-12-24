@@ -11,35 +11,35 @@
           <li>
             <%#= link_to "商品一覧", admin_items_path, class: 'btn nav-link text-light mr-3' %>
           </li>
-          <li>
+          <li class="font_header">
             <%= link_to "ユーザー一覧", admin_customers_path, class: 'btn nav-link text-dark mr-3' %>
           </li>
-          <li>
+          <li class="font_header">
             <%= link_to "投稿一覧", admin_items_path, class: 'btn nav-link text-dark mr-3' %>
           </li>
           <li>
             <%#= link_to "ジャンル一覧", admin_genres_path, class: 'btn nav-link text-light mr-3' %>
           </li>
-          <li>
+          <li class="font_header">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn nav-link text-dark mr-3' %>
           </li>
         <% else %>
-          <li>
+          <li class="font_header">
             <%= link_to root_path,class: 'nav-link text-dark', 'data-turbolinks': false do %>
               <i class="fas fa-home"></i> トップページ
             <% end %>
           </li>
-          <li>
+          <li class="font_header">
             <%= link_to home_about_path,class: 'nav-link text-dark' do %>
               <i class="fas fa-link"></i> アバウトページ
             <% end %>
           </li>
-          <li>
+          <li class="font_header">
             <%= link_to new_customer_registration_path,class: 'nav-link text-dark' do %>
               <i class="fas fa-user-plus"></i> 新規登録
             <% end %>
           </li>
-          <li>
+          <li class="font_header">
             <%= link_to new_customer_session_path ,class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>

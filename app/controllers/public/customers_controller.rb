@@ -5,11 +5,6 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @items = @customer.items.latest.published.page(params[:page]).per(12)
-    #@today_book = @books.created_today
-    #@yesterday_book = @books.created_yesterday
-    #@this_week_book = @books.created_this_week
-    #@last_week_book = @books.created_last_week
-    @item = Item.find(params[:id])
   end
 
   def index

@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def new
     @item = Item.new
@@ -32,10 +33,9 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
     if @item.save
-      redirect_to item_path(@item), notice: "投稿に成功しました！"
+      redirect_to item_edit_index_path(current_customer), notice: "投稿に成功しました！"
     else
-      @items = Item.all
-      render 'index'
+      render 'new'
     end
   end
 
@@ -46,7 +46,7 @@ class Public::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to item_path(@item), notice: "You have updated item successfully."
+      redirect_to item_edit_index_path(current_customer), notice: "You have updated item successfully."
     else
       render "edit"
     end
@@ -55,7 +55,7 @@ class Public::ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
-    redirect_to items_path
+    redirect_to item_edit_index_path(current_customer), notice: "投稿を削除しました！"
   end
 
   def search_item
@@ -67,6 +67,12 @@ class Public::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :body, :category, :star, :image, :is_published_flag)
+  end
+
+  def ensure_user
+    @items = current_customer.items
+    @item = @items.find_by(id: params[:id])
+    redirect_to items_path unless @item
   end
 
 end

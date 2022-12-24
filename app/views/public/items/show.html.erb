@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-6 col-sm-4 mb-3">
               <h3 class="mt-2 mb-3"><strong></br><%=  @item.title %></strong></h3>
-              <p class="mb-3"><%= @item.body %></p>
+              <p class="mb-3"><%= safe_join(@item.body.split("\n"),tag(:br)) %></p>
               <p>
               <% if @item.category === nil %>
                 no tag
@@ -23,13 +23,24 @@
                <p><%= link_to(@item.customer) do %>
                     <span><i class="fas fa-user"></i> By <%= @item.customer.name %></span>
                   <% end %>
-               <%= link_to '編集', edit_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
+                <% if @customer == current_customer %>
+                <%= link_to '編集', edit_item_path(@item), class: "btn btn-sm btn-success", 'data-turbolinks': false %>
+                <% end %>
                </p>
             </div>
 
     <div class="col-lg-8 col-12 offset-md-2">
       <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
+      <% if current_customer.email == 'guest@example.com' %>
+      <p> ゲストユーザーはコメントが出来ません。</br>
+          コメントをするにはユーザー登録が必要です。</br>
+          下記ボタンよりログアウトして新規登録をしてください。
+      </p>
+      <div class="text-center"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'btn btn-danger btn-bg' %></div>
+      <% elsif %>
+
       <div class="new_comment mt-5"><%= render "public/item_comments/form", item: @item, item_comment: @item_comment %></div>
+      <% end %>
     </div>
   </div>
 </div>

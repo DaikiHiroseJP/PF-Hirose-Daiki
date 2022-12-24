@@ -12,6 +12,11 @@
     <%= f.label :Tag %>
     <%= f.text_field :category, class: 'form-control item_category' %>
   </div>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control-file item_image", accept: 'image/*' %>
+  </div>
+  <% if item.is_admin_published_flag === true %>
   <div>
     <%= f.label :is_published_flag, "公開", value: true %>
     <%= f.radio_button :is_published_flag, 'true' %>
@@ -20,6 +25,9 @@
     <%= f.label :is_published_flag, "非公開", value: false %>
     <%= f.radio_button :is_published_flag,'false' %>
   </div>
+  <% else %>
+    <strong>管理者によって非公開にされています。</strong>
+  <% end %>
 
   <% if item.id === nil %>
     <div class="form-group">
@@ -44,7 +52,7 @@
   </script>
 
   <% else %>
-    <%= render "static_rate", item: item %>
+    <%= render "static_rate", item: item %>（星は変更できません）
   <% end %>
 
   <div class="form-group">

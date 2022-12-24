@@ -24,9 +24,10 @@ class Item < ApplicationRecord
   scope :admin_published, -> {where(is_admin_published_flag: true)}
   scope :admin_unpublished, -> {where(is_admin_published_flag: false)}
 
-  validates :title,presence:true
+  validates :title,presence:true,length:{maximum:50}
   validates :body,presence:true,length:{maximum:200}
   validates :category,presence:true,length:{maximum:28}
+  validates :star,presence:true
 
   def self.looks(search, word)
      if search == "latest_field"

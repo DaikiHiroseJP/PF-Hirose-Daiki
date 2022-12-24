@@ -4,10 +4,6 @@
 	  <th>名前</th>
 	  <th><%= customer.name %></th>
   </tr>
-  <tr>
-	  <th>コメント</th>
-	  <th><%= customer.introduction %></th>
-	</tr>
 	<tr>
 	  <th>フォロー中</th>
 	  <th>
@@ -25,6 +21,17 @@
 	  </th>
 	</tr>
 </table>
+<div class="card mb-3">
+	<h5 class="card-header">コメント</h5>
+	<div class="card-body">
+		<%if customer.introduction.nil? %> <!--空白だとsplitでエラーが発生するため。-->
+		<p class="card-text"><%= customer.introduction %></p>
+		<% else %>
+		<p class="card-text"><%= safe_join(customer.introduction.split("\n"),tag(:br)) %></p>
+		<%end %>
+	</div>
+</div>
+
 
 <div class='row'>
 	<% if customer.email == 'guest@example.com' %>

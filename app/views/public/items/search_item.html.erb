@@ -1,11 +1,18 @@
-<h2>Items search for"<%= params[:keyword] %>"</h2>
+<div class="container px-5 px-sm-0">
+  <div class='row'>
+    <div class="col-12px-5 px-sm-0 mx-auto">
+<h2><%= params[:keyword] %>の検索結果</h2>
     <table class='table'>
       <thead>
         <tr>
           <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
-          <th>Tag</th>
+          <th>タイトル</th>
+          <th>内容</th>
+          <th>タグ</th>
+          <th>いいね</th>
+          <th></th>
+          <th>星レビュー</th>
+          <th>ユーザー</th>
           <th colspan="10"></th>
         </tr>
       </thead>
@@ -13,18 +20,21 @@
         <% @items.each do |item| %>
           <tr>
             <td>
-              <%= link_to(item.customer) do %>
-              <%= image_tag item.customer.get_profile_image, size:'50x50', 'data-turbolinks': false %>
+              <%= link_to item_path(item)  do %>
+              <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
               <% end %>
             </td>
-            <td><%= link_to item.title,item, 'data-turbolinks': false %></td>
-            <td><%= item.body %></td>
+            <td><%= link_to item.title.truncate(10),item, 'data-turbolinks': false %></td>
+            <td><%= item.body.truncate(15) %></td>
             <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
             <td><%= render 'public/favorites/favorite', item: item %></td>
             <td>コメント数: <%= item.item_comments.count %></td>
             <td><%= render "public/items/static_rate", item: item %></td>
-            <td><%= l item.created_at %></td>
+            <td>By <%= item.customer.name %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+</div>
+</div>
+</div>

@@ -65,7 +65,7 @@
               <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
               <% end %>
             </td>
-            <td><%= link_to item.title,item, 'data-turbolinks': false %></td>
+            <td><%= link_to item.title.truncate(10),item, 'data-turbolinks': false %></td>
             <td><%= item.body.truncate(15) %></td>
             <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
             <td><%= render 'public/favorites/favorite', item: item %></td>

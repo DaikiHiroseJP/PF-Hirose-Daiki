@@ -10,6 +10,12 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def authenticate!
+    if [ current_admin, current_customer ].all? {|e| e.nil?}
+      :authenticate_admin! ### カスタマーページの動作をadminでも出来るようにする。ただ、エラーが発生する場合もあるため多用はしないこと。items_commentで利用中。
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

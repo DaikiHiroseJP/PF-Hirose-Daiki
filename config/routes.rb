@@ -18,9 +18,13 @@ Rails.application.routes.draw do
 
   #admin
   namespace :admin do
-    resources :customers, only:[:show,:edit,:update,:index]
+    get "customer_search" => "searches#customer_search"
+    resources :customers, only:[:show,:edit,:update,:index] do
+      get 'search' => 'customers#search'
+    end
     resources :items, only:[:index,:new,:create,:show,:edit,:update]
     get '/search' => 'searches#search'
+    get "search_item" => "items#search_item"
   end
 
   #public

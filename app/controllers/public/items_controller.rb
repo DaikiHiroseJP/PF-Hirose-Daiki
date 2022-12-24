@@ -46,7 +46,7 @@ class Public::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to item_edit_index_path(current_customer), notice: "You have updated item successfully."
+      redirect_to item_edit_index_path(current_customer), notice: "更新に成功しました！"
     else
       render "edit"
     end

@@ -5,27 +5,17 @@ class Admin::ItemsController < ApplicationController
     @items = Item.page(params[:page]).per(10)
   end
 
-  # def new
-  #   @item = Item.new
-  #   @genres = Genre.all
-  # end
-
-  def create
-    @item = Item.new(item_params)
-    @genres = Genre.all
-    if @item.save
-      redirect_to admin_item_path(@item)
-    else
-      render 'new'
-    end
-  end
-
   def show
     @item = Item.find(params[:id])
   end
 
   def edit
     @item = Item.find(params[:id])
+  end
+
+  def edit_index
+    @customer = Customer.find(params[:item_id])
+    @items = @customer.items.latest.page(params[:page]).per(10)
   end
 
   def update
@@ -35,6 +25,12 @@ class Admin::ItemsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to admin_items_path, notice: "投稿を削除しました！"
   end
 
   private

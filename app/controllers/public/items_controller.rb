@@ -11,7 +11,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def edit_index
-    @items = current_customer.items.latest.page(params[:page]).per(10)
+    is_matching_login_user
+    @customer = Customer.find(params[:item_id])
+    @items = @customer.items.latest.page(params[:page]).per(10)
   end
 
   def show
@@ -72,6 +74,14 @@ class Public::ItemsController < ApplicationController
     @items = current_customer.items
     @item = @items.find_by(id: params[:id])
     redirect_to items_path unless @item
+  end
+
+  def is_matching_login_user
+    customer_id = params[:item_id].to_i
+    login_customer_id = current_customer.id
+    if(customer_id != login_customer_id)
+      redirect_to current_customer
+    end
   end
 
 end

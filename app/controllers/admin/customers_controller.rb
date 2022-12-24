@@ -16,6 +16,7 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
+      flash[:notice] ="変更が反映されました。"
       redirect_to admin_customer_path(@customer)
     else
       render "edit"
@@ -25,6 +26,6 @@ class Admin::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :email, :postal_code, :address, :phone_number, :is_deleted)
+    params.require(:customer).permit(:name, :email, :is_deleted, )
   end
 end

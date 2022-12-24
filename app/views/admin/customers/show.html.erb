@@ -21,7 +21,11 @@
         </td>
       </tr>
       <tr>
-        <td></td>
+        <td>
+          <%= link_to admin_item_edit_index_path(@customer), class: "btn btn-outline-secondary", 'data-turbolinks': false do %>
+          <%= @customer.name %>さんの投稿一覧
+          <% end %>
+        </td>
         <td>
           <%= link_to "編集する",edit_admin_customer_path,class: 'btn btn-success mr-5' %>
         </td>

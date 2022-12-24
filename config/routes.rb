@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :customers, only:[:show,:edit,:update,:index] do
       get 'search' => 'customers#search'
     end
-    resources :items, only:[:index,:new,:create,:show,:edit,:update]
+    resources :items, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
+      get '/edit_index' => 'items#edit_index'
+    end
     get '/search' => 'searches#search'
     get "search_item" => "items#search_item"
   end

@@ -1,42 +1,42 @@
 <div class="container px-5 px-sm-0">
   <div class='row'>
     <div class="col-12px-5 px-sm-0 mx-auto">
-<h2><%= params[:keyword] %>の検索結果</h2>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th></th>
-          <th>タイトル</th>
-          <th>内容</th>
-          <th>タグ</th>
-          <th>いいね</th>
-          <th></th>
-          <th>星レビュー</th>
-          <th>ユーザー</th>
-          <th colspan="10"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @items.each do |item| %>
+      <h2><%= params[:keyword] %>の検索結果</h2>
+      <table class='table'>
+        <thead>
           <tr>
-            <td>
-              <%= link_to item_path(item)  do %>
-              <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
-              <% end %>
-            </td>
-            <td><%= link_to item.title.truncate(10),item, 'data-turbolinks': false %></td>
-            <td><%= item.body.truncate(15) %></td>
-            <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
-            <td><%= render 'public/favorites/favorite', item: item %></td>
-            <td>コメント数: <%= item.item_comments.count %></td>
-            <td><%= render "public/items/static_rate", item: item %></td>
-            <td>By <%= item.customer.name %></td>
+            <th></th>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>タグ</th>
+            <th>いいね</th>
+            <th></th>
+            <th>星レビュー</th>
+            <th>ユーザー</th>
+            <th colspan="10"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-</div>
-</div>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td>
+                <%= link_to item_path(item)  do %>
+                <%= image_tag item.get_image, size:'50x50', 'data-turbolinks': false %>
+                <% end %>
+              </td>
+              <td><%= link_to item.title.truncate(10),item, 'data-turbolinks': false %></td>
+              <td><%= item.body.truncate(15) %></td>
+              <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
+              <td><%= render 'public/favorites/favorite', item: item %></td>
+              <td>コメント数: <%= item.item_comments.count %></td>
+              <td><%= render "public/items/static_rate", item: item %></td>
+              <td>By <%= item.customer.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <div class=" d-flex mb-3 justify-content-center">
   <%= paginate @items %>

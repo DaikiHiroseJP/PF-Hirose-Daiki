@@ -31,8 +31,6 @@
 		<%end %>
 	</div>
 </div>
-
-
 <div class='row'>
 	<% if customer.email == 'guest@example.com' %>
 	  <p class="bg-white">ゲストユーザーは</br>ユーザー情報の編集ができません。</p>
@@ -52,6 +50,5 @@
       <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
     <% end %>
   <% end %>
-
 </div>
 

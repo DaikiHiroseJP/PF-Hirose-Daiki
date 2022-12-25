@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @items = @customer.items.latest.published.page(params[:page]).per(12)
+    @items = @customer.items.latest.published.admin_published.page(params[:page]).per(12)
   end
 
   def index

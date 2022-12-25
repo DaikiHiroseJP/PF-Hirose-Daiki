@@ -4,8 +4,14 @@
       <div class="comment">
         <div class="content clearfix">
           <div class="comment-image">
-            <%= link_to customer_path(item_comment.customer) do %>
-              <%= image_tag item_comment.customer.get_profile_image, size: "45x45", class:"rounded-circle" %>
+            <% if admin_signed_in? %>
+              <%= link_to admin_customer_path(item_comment.customer) do %>
+                <%= image_tag item_comment.customer.get_profile_image, size: "45x45", class:"rounded-circle" %>
+              <% end %>
+            <% else %>
+              <%= link_to customer_path(item_comment.customer) do %>
+                <%= image_tag item_comment.customer.get_profile_image, size: "45x45", class:"rounded-circle" %>
+              <% end %>
             <% end %>
           </div>
           <div class="comment-body-header">

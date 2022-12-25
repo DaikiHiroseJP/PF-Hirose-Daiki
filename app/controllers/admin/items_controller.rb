@@ -33,6 +33,10 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_items_path, notice: "投稿を削除しました！"
   end
 
+  def search_item
+    @items = Item.search(params[:keyword]).page(params[:page]).per(10)
+  end
+
   private
 
   def item_params

@@ -36,7 +36,7 @@
             <% if item.category === nil %>
               no tag
             <% else %>
-              <%= item.category.truncate(5) %>
+              <%= link_to item.category.truncate(5), admin_search_item_path(keyword: item.category), 'data-turbolinks': false %>
             <% end %>
           </td>
           <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= item.favorite.size %></td>

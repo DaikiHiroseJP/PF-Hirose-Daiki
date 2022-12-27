@@ -1,3 +1,4 @@
+![ER図 PF_page-0001](https://user-images.githubusercontent.com/113087113/209622435-d379988b-a450-4abd-9d2b-1be42a298bc4.jpg)
 # Cats_Lab
 
 ## サイト概要
@@ -23,6 +24,7 @@
   
 
 ## 設計書
+![ER図 PF_page-0001](https://user-images.githubusercontent.com/113087113/209622525-da85b0d1-92a0-4dc7-93f9-ea9e41cde074.jpg)
 
 
 ## 開発環境
@@ -31,7 +33,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-仕様検討中です
-

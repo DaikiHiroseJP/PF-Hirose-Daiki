@@ -1,4 +1,3 @@
-![ER図 PF_page-0001](https://user-images.githubusercontent.com/113087113/209622435-d379988b-a450-4abd-9d2b-1be42a298bc4.jpg)
 # Cats_Lab
 
 ## サイト概要

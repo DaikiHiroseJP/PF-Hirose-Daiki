@@ -10,6 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <div id="wrapper">
     <% if customer_signed_in? %>
       <%= render 'layouts/public/header' %>
     <% elsif %>
@@ -18,9 +19,12 @@
       <%= render 'layouts/public/header' %>
     <% end %>
       <main>
+        <section class="content">
         <p id="notice"><%= notice %></p>
         <%= yield %>
+        </section>
       </main>
+    <%= render 'layouts/footer' %>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
       const swiper = new Swiper('.swiper', {
@@ -69,7 +73,9 @@
           spaceBetween: 10,
         }
       },
+
     });
     </script>
+    </div>
   </body>
 </html>

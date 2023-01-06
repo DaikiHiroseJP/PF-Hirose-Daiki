@@ -3,14 +3,14 @@
     <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto">
       <h3>新規投稿画面</h3>
       <%= render 'layouts/errors', obj: @item %>
-<% if current_customer.email == 'guest@example.com' %>
-	<h3 class="mb-4 text-center bg-white">
-  ゲストユーザーは新規投稿が出来ません。</br>
-  新規投稿をするにはユーザー登録が必要です。</br>
-  下記ボタンよりログアウトして新規登録をしてください。
-  </h3>
-  <div class="text-center"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'btn btn-danger btn-bg' %></div>
-<% elsif %>
+<!--<%# if current_customer.email == 'guest@example.com' %>-->
+<!--	<h3 class="mb-4 text-center bg-white">-->
+<!--  ゲストユーザーは新規投稿が出来ません。</br>-->
+<!--  新規投稿をするにはユーザー登録が必要です。</br>-->
+<!--  下記ボタンよりログアウトして新規登録をしてください。-->
+<!--  </h3>-->
+<!--  <div class="text-center"><%#= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'btn btn-danger btn-bg' %></div>-->
+<!--<%# elsif %>-->
 
 <%= form_with model: @item,local:true do |f| %>
   <div class="form-group">
@@ -65,7 +65,7 @@
   </div>
 <% end %>
 
-<% end %>
+<%# end %>
 
   </div>
  </div>

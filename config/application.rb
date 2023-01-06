@@ -20,5 +20,6 @@ module PFHiroseDaiki
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
+    config.autoload_paths += Dir["#{config.root}/lib"]
   end
 end

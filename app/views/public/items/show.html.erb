@@ -30,15 +30,15 @@
       </div>
       <div class="col-lg-8 col-12 offset-md-2 bg-white">
         <div id="comments_area"><%= render "public/item_comments/index", item: @item %></div>
-        <% if current_customer.email == 'guest@example.com' %>
-          <p> ゲストユーザーはコメントが出来ません。</br>
-              コメントをするにはユーザー登録が必要です。</br>
-              下記ボタンよりログアウトして新規登録をしてください。
-          </p>
-          <div class="text-center"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'btn btn-danger btn-bg' %></div>
-        <% elsif %>
-          <div class="new_comment mt-5"><%= render "public/item_comments/form", item: @item, item_comment: @item_comment %></div>
-        <% end %>
+        <!--<%# if current_customer.email == 'guest@example.com' %>-->
+        <!--  <p> ゲストユーザーはコメントが出来ません。</br>-->
+        <!--      コメントをするにはユーザー登録が必要です。</br>-->
+        <!--      下記ボタンよりログアウトして新規登録をしてください。-->
+        <!--  </p>-->
+        <!--  <div class="text-center"><%#= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'btn btn-danger btn-bg' %></div>-->
+        <!--<%# elsif %>-->
+          <div class="new_comment mt-5 mb-5"><%= render "public/item_comments/form", item: @item, item_comment: @item_comment %></div>
+        <%# end %>
       </div>
   </div>
 </div>

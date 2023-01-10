@@ -7,7 +7,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-      @items = Item.latest.published.admin_published.page(params[:page]).per(12)
+    @items = Item.latest.published.admin_published.page(params[:page]).per(12)
   end
 
   def edit_index

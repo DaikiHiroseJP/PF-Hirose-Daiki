@@ -7,9 +7,8 @@
         <div class="card-body">
             <div class="d-flex">
             <%= link_to(item_path(item.id), class:"text-dark", 'data-turbolinks': false) do %>
-              <strong class="card-title"><span><%= item.title.truncate(9) %></span></strong>
+              <strong class="card-title"><span><%= item.title.truncate(21) %></span></strong>
             <% end %>　<%= render 'public/favorites/favorite', item: item %></div>
-            <p class="card-text"><%= item.body.truncate(12) %></p>
             <%= link_to(item.customer) do %>
               <span><i class="fas fa-user"></i> By <%= item.customer.name %></span>
             <% end %>

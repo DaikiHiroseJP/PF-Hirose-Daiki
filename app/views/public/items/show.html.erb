@@ -16,6 +16,8 @@
           <% else %>
             <%= link_to @item.category, search_item_path(keyword: @item.category), 'data-turbolinks': false %>
           <% end %>
+          <% @item_tags.each do |tag| %>
+          <%=tag.name%><%="(#{tag.items.count})" %><% end %>
         </p>
         <p><%= render 'public/favorites/favorite', item: @item %></p>
         <p>コメント数: <%= @item.item_comments.count %></p>

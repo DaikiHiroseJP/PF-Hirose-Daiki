@@ -12,6 +12,10 @@
     <%= f.text_field :category, class: 'form-control item_category' %>
   </div>
   <div class="form-group">
+    <%= f.label :"新タグ(,で区切ると複数タグ登録できます)" %>
+    <%= f.text_field :name,value: @tag_list, class: 'form-control item_category' %>
+  </div>
+  <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image, class: "form-control-file item_image", accept: 'image/*' %>
   </div>

@@ -1,6 +1,6 @@
   <% items.each do |item| %>
-    <div class="col">
-      <div class="card h-100">
+    <div class="col mb-4">
+      <div class="card h-100 card-item">
         <%= link_to item_path(item), 'data-turbolinks': false do %>
           <%= image_tag item.get_image, size:"200x200", class:"card-img-top"; %>
         <% end %>

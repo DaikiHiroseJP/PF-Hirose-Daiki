@@ -1,4 +1,4 @@
 class ItemTag < ApplicationRecord
-  belongs_to :post
+  belongs_to :item
   belongs_to :tag
 end

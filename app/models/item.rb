@@ -51,15 +51,15 @@ class Item < ApplicationRecord
      end
 
   end
-
-  def self.search(search_word)
-    Item.where(['category LIKE ?', "#{search_word}"]).published
-  end
+  #必要なくなったのでコメントアウト、必要に応じて削除。
+  # def self.search(search_word)
+  #   Item.where(['category LIKE ?', "#{search_word}"]).published
+  # end
 
   def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
-  
+
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

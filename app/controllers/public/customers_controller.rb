@@ -51,8 +51,8 @@ class Public::CustomersController < ApplicationController
 
   def withdraw
     @customer = current_customer
-    @customer.update(is_deleted: true)
-    @items = @customer.items.all.update(is_published_flag: false)
+    @customer.update(is_deleted: true) 
+    @items = @customer.items.all.update(is_published_flag: false) #退会したら投稿をすべて非公開にする
     reset_session
     redirect_to root_path
   end

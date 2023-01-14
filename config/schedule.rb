@@ -28,7 +28,7 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-#30分に一度、data_resetメゾッドが実行される記述
+#60分に一度、data_resetメゾッドが実行される記述
 every 60.minute do
   begin
     runner "Batch::DataGuest.data_reset"

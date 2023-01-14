@@ -10,9 +10,11 @@
     <h3>マイページ</h3>
     <%= render 'info', customer: @customer %>
     </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class="col-8 mx-auto">
       <h2>投稿一覧</h2>
-      <%= render 'public/items/index',items: @items %>
+      <div class='row row-cols-1 row-cols-md-3 g-4'>
+        <%= render 'public/items/index',items: @items %>
+      </div>
     </div>
     <% end %>
  </div>

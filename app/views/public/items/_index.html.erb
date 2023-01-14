@@ -5,20 +5,18 @@
           <%= image_tag item.get_image, size:"200x200", class:"card-img-top"; %>
         <% end %>
         <div class="card-body">
-            <div class="d-flex">
             <%= link_to(item_path(item.id), class:"text-dark", 'data-turbolinks': false) do %>
               <strong class="card-title"><span><%= item.title.truncate(21) %></span></strong>
-            <% end %>　<%= render 'public/favorites/favorite', item: item %></div>
-            <%= link_to(item.customer) do %>
-              <span><i class="fas fa-user"></i> By <%= item.customer.name %></span>
             <% end %>
+            <div class="d-flex">
+              <%= link_to(item.customer) do %>
+                <span><i class="fas fa-user"></i> By <%= item.customer.name %>　<%= render 'public/favorites/favorite', item: item %></span>
+              <% end %>
+            </div>
         </div>
       </div>
     </div>
   <% end %>
 
-<div class=" d-flex mb-3 justify-content-center">
-  <%= paginate items, theme: 'twitter-bootstrap-4' %>
-</div>
 
 

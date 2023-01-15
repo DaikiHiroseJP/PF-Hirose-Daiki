@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :items, only:[:index,:new,:create,:show,:edit,:update,:destroy] do
       get '/edit_index' => 'items#edit_index'
     end
+    resources :tags, only:[:index,:create,:edit,:update, :destroy]
     get '/search' => 'searches#search'
     get "search_item" => "items#search_item"
   end

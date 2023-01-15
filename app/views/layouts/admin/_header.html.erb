@@ -18,7 +18,7 @@
             <%= link_to "投稿一覧", admin_items_path, class: 'btn nav-link text-dark mr-3', 'data-turbolinks': false %>
           </li>
           <li>
-            <%#= link_to "ジャンル一覧", admin_genres_path, class: 'btn nav-link text-light mr-3' %>
+            <%= link_to "タグ一覧", admin_tags_path, class: 'btn nav-link text-dark mr-3' %>
           </li>
           <li class="font_header">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn nav-link text-dark mr-3' %>

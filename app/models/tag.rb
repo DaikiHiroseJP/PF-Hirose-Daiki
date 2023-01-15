@@ -1,8 +1,7 @@
 class Tag < ApplicationRecord
-    before_save :downcase_tag_name
+  before_save :downcase_tag_name
 
-  has_many :item_tags,dependent: :destroy, foreign_key: 'tag_id'
-  # タグは複数の投稿を持つ　それは、item_tagsを通じて参照できる
+  has_many :item_tags, dependent: :destroy
   has_many :items,through: :item_tags
 
   validates :name, length: { maximum: 10 }

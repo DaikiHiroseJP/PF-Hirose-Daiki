@@ -10,14 +10,10 @@
       <div class="col-md-6 col-sm-4 mb-3 bg-white">
         <h3 class="mt-2 mb-3"><strong></br><%=  @item.title %></strong></h3>
         <p class="mb-3"><%= safe_join(@item.body.split("\n"),tag(:br)) %></p>
-        <p>
-          <% if @item_tags.name === nil %>
-            no tag
-          <% else %>
+        <p><i class="fas fa-tag"></i>
             <% @item_tags.each do |tag| %>
               <%= link_to tag.name, search_item_path(tag_id: tag.id), 'data-turbolinks': false %><%="(#{tag.items.published.admin_published.count})" %>
             <% end %>
-          <% end %>
         </p>
         <p><%= render 'public/favorites/favorite', item: @item %></p>
         <p>コメント数: <%= @item.item_comments.count %></p>

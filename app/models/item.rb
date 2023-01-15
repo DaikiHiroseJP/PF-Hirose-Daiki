@@ -5,8 +5,8 @@ class Item < ApplicationRecord
   has_many :favorite, dependent: :destroy
   has_many :favorited_customers, through: :favorite, source: :customer
   has_many :item_comments, dependent: :destroy
-  has_many :item_tags,dependent: :destroy
-  has_many :tags,through: :item_tags
+  has_many :item_tags, dependent: :destroy
+  has_many :tags, through: :item_tags
 
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) } # 今日
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) } # 前日
@@ -69,8 +69,7 @@ class Item < ApplicationRecord
       unless find_tag = Tag.find_by(name: tag.downcase)
         begin
           # create メソッドでタグの作成
-          # create! としているのは、保存が成功しても失敗してもオブジェクト
-          # を返してしまうため、例外を発生させたい
+          # create! としているのは、保存が成功しても失敗してもオブジェクトを返してしまうため、例外を発生させたい
           self.tags.create!(name: tag)
 
         # 例外が発生すると rescue 内の処理が走り nil となるので

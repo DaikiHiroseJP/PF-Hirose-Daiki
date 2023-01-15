@@ -62,23 +62,35 @@ class Item < ApplicationRecord
     (image.attached?) ? image : 'no_image.jpg'
   end
 
-  def save_tag(sent_tags)
-  # タグが存在していれば、タグの名前を配列として全て取得
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    # 現在取得したタグから送られてきたタグを除いてoldtagとする
-    old_tags = current_tags - sent_tags
-    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
-    new_tags = sent_tags - current_tags
+  def save_tags(tag_list)
+    tag_list.each do |tag|
+      # 受け取った値を小文字に変換して、DBを検索して存在しない場合は
+      # find_tag に nil が代入され　nil となるのでタグの作成が始まる
+      unless find_tag = Tag.find_by(name: tag.downcase)
+        begin
+          # create メソッドでタグの作成
+          # create! としているのは、保存が成功しても失敗してもオブジェクト
+          # を返してしまうため、例外を発生させたい
+          self.tags.create!(name: tag)
 
-    # 古いタグを消す
-    old_tags.each do |old|
-      self.tags.delete = Tag.find_by(name: old)
+        # 例外が発生すると rescue 内の処理が走り nil となるので
+        # 値は保存されないで次の処理に進む
+        rescue
+          nil
+        end
+      else
+            # DB にタグが存在した場合、中間テーブルにブログ記事とタグを紐付けている
+        ItemTag.create!(item_id: self.id, tag_id: find_tag.id)
+      end
     end
+  end
 
-    # 新しいタグを保存
-    new_tags.each do |new|
-      new_item_tag = Tag.find_or_create_by(name: new)
-      self.tags << new_item_tag
+  def update_tags(tag_list)
+    item_tags.map(&:destroy)
+    return unless tag_list
+    tag_list.each do |tag|
+      tag = Tag.find_or_create_by(name: tag)
+      ItemTag.create!(tag: tag, item: self)
     end
   end
 end

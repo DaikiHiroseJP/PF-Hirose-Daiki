@@ -67,3 +67,4 @@ gem "net-imap"
 gem 'devise-i18n'
 gem 'bootstrap4-kaminari-views'
 gem 'whenever', require: false
+gem 'pry-rails'

@@ -4,7 +4,6 @@ class Public::ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.item_tags.build
   end
 
   def index
@@ -37,10 +36,9 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    tag_list = params[:item][:name].split(',')
     if @item.save
-      @item.save_tag(tag_list)
-
+      tag_list = tag_params[:names].split(/[[:blank:]]+/).select(&:present?)
+      @item.save_tags(tag_list)
       redirect_to item_edit_index_path(current_customer), notice: "投稿に成功しました！"
     else
       render 'new'
@@ -49,14 +47,14 @@ class Public::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @tag_list = @item.tags.pluck(:name).join(',')
+    @tag_list = @item.tags.map { |tag| tag.name }
   end
 
   def update
     @item = Item.find(params[:id])
-    tag_list = params[:item][:name].split(',')
+    tag_list = params[:item][:name].split(/[[:blank:]]+/).select(&:present?)
     if @item.update(item_params)
-      @item.save_tag(tag_list)
+      @item.update_tags(tag_list)
       redirect_to item_edit_index_path(current_customer), notice: "更新に成功しました！"
     else
       render "edit"
@@ -79,6 +77,10 @@ class Public::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :body, :tag_id, :star, :image, :is_published_flag)
+  end
+
+  def tag_params
+      params.require(:item).permit(:names)
   end
 
   def ensure_user

@@ -14,15 +14,17 @@
     </div>
     <div class="col-11 mt-3 bg-white">
         <div class="col-12">
-          <h2 class="text-black text-center font_header">
+          <h3 class="text-black text-center font_header">
             ようこそ、Cats Labへ！</br>
             このサイトは、猫用品のレビューサイトです！</br>
-            ゲストユーザーとして投稿の閲覧はできますが、</br>
-            投稿をするにはユーザー登録が必要になります。</br>
+            ゲストユーザーとしてレビューとコメントの</br>
+            投稿ができますが、一定期間で削除されます。</br>
+            投稿を残すにはユーザー登録が必要になります。</br>
             </br>
             ゲストログインはこちらから！
-          </h2>
-          <div class="text-center"><%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post,class: "btn btn-success btn-bg " %></div>
+          </h3>
+            </br>
+          <div class="text-center mb-5"><%= link_to 'ゲストログイン', customers_guest_sign_in_path, method: :post,class: "btn btn-success btn-bg " %></div>
         </div>
     </div>
   </div>

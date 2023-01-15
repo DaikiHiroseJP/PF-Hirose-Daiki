@@ -2,6 +2,9 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2 class="bg-white">ユーザー情報編集</h2>
+    <% if current_customer.email == 'guest@example.com' %>
+      <h4>ゲストユーザーは編集できません。</h4>
+    <% else %>
     <%= form_with model: @user, local:true do |f| %>
       <%= render 'layouts/errors', obj: @user %>
       <div class="form-group">
@@ -23,5 +26,6 @@
     <div class="text-right mt-5">
     <%= link_to "退会する", unsubscribe_customers_path, class: "btn btn-danger" %>
     </div>
+    <% end %>
   </div>
 </div>

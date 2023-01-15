@@ -4,6 +4,7 @@ class Public::ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @item.item_tags.build
   end
 
   def index
@@ -39,6 +40,7 @@ class Public::ItemsController < ApplicationController
     tag_list = params[:item][:name].split(',')
     if @item.save
       @item.save_tag(tag_list)
+
       redirect_to item_edit_index_path(current_customer), notice: "投稿に成功しました！"
     else
       render 'new'
@@ -54,10 +56,6 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     tag_list = params[:item][:name].split(',')
     if @item.update(item_params)
-      @old_relations = ItemTag.where(item_id: @item.id)
-      @old_relations.each do |relation|
-      relation.delete
-      end
       @item.save_tag(tag_list)
       redirect_to item_edit_index_path(current_customer), notice: "更新に成功しました！"
     else

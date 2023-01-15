@@ -26,9 +26,12 @@ class Item < ApplicationRecord
   scope :admin_published, -> {where(is_admin_published_flag: true)}
   scope :admin_unpublished, -> {where(is_admin_published_flag: false)}
 
+  validates_associated :tags
+
   validates :title,presence:true,length:{maximum:50}
   validates :body,presence:true,length:{maximum:200}
   validates :star,presence:true
+
 
   def self.looks(search, word)
      if search == "latest_field"
@@ -69,7 +72,7 @@ class Item < ApplicationRecord
 
     # 古いタグを消す
     old_tags.each do |old|
-      self.tags.delete　Tag.find_by(name: old)
+      self.tags.delete = Tag.find_by(name: old)
     end
 
     # 新しいタグを保存

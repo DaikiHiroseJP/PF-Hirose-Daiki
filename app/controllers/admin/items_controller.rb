@@ -34,7 +34,9 @@ class Admin::ItemsController < ApplicationController
   end
 
   def search_item
-    @items = Item.search(params[:keyword]).page(params[:page]).per(10)
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @items = @tag.items.published.admin_published.page(params[:page]).per(10)
   end
 
   private

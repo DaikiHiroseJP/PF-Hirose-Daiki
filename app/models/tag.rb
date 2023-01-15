@@ -5,4 +5,5 @@ class Tag < ApplicationRecord
   has_many :items,through: :item_tags
 
   validates :name, uniqueness: true, presence: true,length:{maximum:28}
+
 end

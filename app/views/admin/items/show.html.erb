@@ -10,10 +10,12 @@
         <h3 class="mt-2 mb-3"><strong></br><%=  @item.title %></strong></h3>
         <p class="mb-3"><%= safe_join(@item.body.split("\n"),tag(:br)) %></p>
         <p>
-          <% if @item.category === nil %>
+          <% if @item.tags.name === nil %>
             no tag
           <% else %>
-            <%= link_to @item.category, admin_search_item_path(keyword: @item.category), 'data-turbolinks': false %>
+            <% @item.tags.each do |tag| %>
+              <%= link_to tag.name, admin_search_item_path(tag_id: tag.id), 'data-turbolinks': false %><%="(#{tag.items.published.admin_published.count})" %>
+            <% end %>
           <% end %>
         </p>
         <p><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= @item.favorite.size %></p>

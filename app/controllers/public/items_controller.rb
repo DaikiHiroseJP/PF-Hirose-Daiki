@@ -76,7 +76,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :body, :tag_id, :star, :image, :is_published_flag)
+    params.require(:item).permit(:title, :body, :star, :image, :is_published_flag)
   end
 
   def tag_params

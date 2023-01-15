@@ -1,10 +1,10 @@
 class Tag < ApplicationRecord
-  before_save :downcase_tag_name
+before_save :downcase_tag_name
 
   has_many :item_tags, dependent: :destroy
   has_many :items,through: :item_tags
 
-  validates :name, length: { maximum: 10 }
+  validates :name, uniqueness: true, presence: true, length: { maximum: 10 }
 
   private
 
@@ -13,3 +13,5 @@ class Tag < ApplicationRecord
     self.name.downcase!
   end
 end
+
+

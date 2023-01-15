@@ -45,9 +45,7 @@
       <i class="fas fa-edit"></i>投稿一覧確認
   　<% end %>
   <% else %>
-    <% if current_customer.email == 'guest@example.com' %>
-      ゲストユーザーはフォロー出来ません。
-    <% elsif current_customer.following?(customer) %>
+    <% if current_customer.following?(customer) %>
       <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete, class: "btn btn-primary" %>
     <% else %>
       <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>

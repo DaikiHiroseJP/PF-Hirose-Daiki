@@ -1,11 +1,16 @@
-<div class="container-fluid px-5 px-sm-0">
+<div class="container px-5 px-sm-0">
   <div class="serchebar d-flex justify-content-center mb-3">
     <%= render 'public/searches/search' %>
   </div>
-  <div class="col-6 mx-auto">
-  <div class='row row-cols-1 row-cols-md-3 g-4'>
-    <%= render 'index', items: @items %>
-  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= render 'tag_search', tag_list: @tag_list %>
+    </div>
+    <div class="col-8 mx-auto">
+      <div class='row row-cols-1 row-cols-md-3 g-4'>
+        <%= render 'index', items: @items %>
+      </div>
+    </div>
   </div>
     <%= paginate @items, theme: 'twitter-bootstrap-4' %>
 </div>

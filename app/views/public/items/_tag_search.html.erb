@@ -1,0 +1,10 @@
+<div class="shadow-lg p-3 mb-5 bg-white rounded tagsearchbox">
+<h6><i class="fas fa-tag"></i><strong>タグで探す</strong></h6>
+
+<% tag_list.each do |list|%>
+<div class="tags_search">
+  <%= link_to list.name, search_item_path(tag_id: list.id), class:"", 'data-turbolinks': false %><%="(#{list.items.published.admin_published.count})" %>
+</div>
+<% end %>
+
+</div>

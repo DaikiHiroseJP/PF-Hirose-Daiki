@@ -3,6 +3,7 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.page(params[:page]).per(10)
+    @tag_list = Tag.all
   end
 
   def show
@@ -11,6 +12,7 @@ class Admin::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @tag_list = @item.tags.map { |tag| tag.name }
   end
 
   def edit_index
@@ -20,8 +22,10 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    tag_list = params[:item][:name].split(/[[:blank:]]+/).select(&:present?)
     if @item.update(item_params)
-      redirect_to admin_item_path(@item)
+      @item.update_tags(tag_list)
+      redirect_to admin_item_path(@item), notice: "更新に成功しました！"
     else
       render 'edit'
     end

@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
   <div class='row'>
     <div class="col-12px-5 px-sm-0 mx-auto">
-      <h2><%= params[:keyword] %>の検索結果</h2>
+      <h2>タグ検索結果</h2>
       <table class='table'>
         <thead>
           <tr>
@@ -26,7 +26,11 @@
               </td>
               <td><%= link_to item.title.truncate(10),item, 'data-turbolinks': false %></td>
               <td><%= item.body.truncate(15) %></td>
-              <td><%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %></td>
+              <td>
+                <% item.tags.each do |tag| %>
+                  <%= link_to tag.name, search_item_path(tag_id: tag.id), 'data-turbolinks': false %><%="(#{tag.items.published.admin_published.count})" %>
+                <% end %>
+              </td>
               <td><%= render 'public/favorites/favorite', item: item %></td>
               <td>コメント数: <%= item.item_comments.count %></td>
               <td><%= render "public/items/static_rate", item: item %></td>

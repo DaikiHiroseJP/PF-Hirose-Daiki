@@ -28,10 +28,12 @@
               <td><%= link_to item.title.truncate(10),item ,'data-turbolinks': false %></td>
               <td><%= item.body.truncate(12) %></td>
               <td>
-                <% if item.category === nil %>
+                <% if item.tags.name === nil %>
                   no tag
                 <% else %>
-                  <%= link_to item.category, search_item_path(keyword: item.category), 'data-turbolinks': false %>
+                  <% item.tags.each do |tag| %>
+                    <%= link_to tag.name, search_item_path(tag_id: tag.id), 'data-turbolinks': false %>
+                  <% end %>
                 <% end %>
               </td>
               <td><%= render 'public/favorites/favorite', item: item %></td>

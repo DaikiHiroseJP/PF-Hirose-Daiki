@@ -32,10 +32,12 @@
               <td><%= link_to item.title.truncate(8),admin_item_path(item) ,'data-turbolinks': false %></td>
               <td><%= item.body.truncate(12) %></td>
               <td>
-                <% if item.category === nil %>
+                <% if item.tags.name === nil %>
                   no tag
                 <% else %>
-                  <%= item.category.truncate(5) %>
+                  <% item.tags.each do |tag| %>
+                    <%= link_to tag.name, search_item_path(tag_id: tag.id), 'data-turbolinks': false %>
+                  <% end %>
                 <% end %>
               </td>
               <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= item.favorite.size %></td>

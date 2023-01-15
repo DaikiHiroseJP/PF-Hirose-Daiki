@@ -27,10 +27,12 @@
           <td><%= link_to item.title.truncate(8),admin_item_path(item) ,'data-turbolinks': false %></td>
           <td><%= item.body.truncate(12) %></td>
           <td>
-            <% if item.category === nil %>
-              no tag
+            <% if item.tags.name === nil %>
+                  no tag
             <% else %>
-              <%= link_to item.category.truncate(5), admin_search_item_path(keyword: item.category), 'data-turbolinks': false %>
+              <% item.tags.each do |tag| %>
+                <%= link_to tag.name, search_item_path(tag_id: tag.id), 'data-turbolinks': false %>
+              <% end %>
             <% end %>
           </td>
           <td><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= item.favorite.size %></td>

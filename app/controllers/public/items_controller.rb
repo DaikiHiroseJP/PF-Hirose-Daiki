@@ -36,7 +36,7 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    tag_list=params[:item][:name].split(',')
+    tag_list = params[:item][:name].split(',')
     if @item.save
       @item.save_tag(tag_list)
       redirect_to item_edit_index_path(current_customer), notice: "投稿に成功しました！"
@@ -80,7 +80,7 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :body, :category, :star, :image, :is_published_flag)
+    params.require(:item).permit(:title, :body, :tag_id, :star, :image, :is_published_flag)
   end
 
   def ensure_user

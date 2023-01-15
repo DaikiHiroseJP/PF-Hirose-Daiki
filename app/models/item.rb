@@ -28,7 +28,6 @@ class Item < ApplicationRecord
 
   validates :title,presence:true,length:{maximum:50}
   validates :body,presence:true,length:{maximum:200}
-  validates :category,presence:true,length:{maximum:28}
   validates :star,presence:true
 
   def self.looks(search, word)

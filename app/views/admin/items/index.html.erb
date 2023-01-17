@@ -37,7 +37,7 @@
                 no tag
             <% else %>
               <% item.tags.each do |tag| %>
-                <%= link_to tag.name, search_item_path(tag_id: tag.id), 'data-turbolinks': false %><%="(#{tag.items.published.admin_published.count})" %>
+                <%= link_to tag.name, admin_search_item_path(tag_id: tag.id), 'data-turbolinks': false %><%="(#{tag.items.published.admin_published.count})" %>
               <% end %>
             <% end %>
           </td>

@@ -19,7 +19,9 @@
         <tbody>
           <% @tags.each do |tag| %>
             <tr>
-              <td><%= tag.name %><%="(#{tag.items.published.admin_published.count})" %></td>
+              <td>
+                <%= link_to tag.name, admin_search_item_path(tag_id: tag.id), 'data-turbolinks': false %><%="(#{tag.items.published.admin_published.count})" %>
+              </td>
               <td><%= link_to '編集する', edit_admin_tag_path(tag.id), class: 'btn btn-success' %></td>
               <td><%= link_to '削除', admin_tag_path(tag), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             </tr>

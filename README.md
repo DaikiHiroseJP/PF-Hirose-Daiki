@@ -23,7 +23,7 @@
   
 
 ## 設計書
-![ER図 PF_page-0001](https://user-images.githubusercontent.com/113087113/209622525-da85b0d1-92a0-4dc7-93f9-ea9e41cde074.jpg)
+![ER図 PF](https://user-images.githubusercontent.com/113087113/212874868-fec095e0-3f19-4300-85cb-1a7af01f043b.jpg)
 
 
 ## 開発環境
